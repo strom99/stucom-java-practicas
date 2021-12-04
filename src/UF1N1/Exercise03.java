@@ -6,7 +6,7 @@ public class Exercise03 {
     public static void main(String[] args) {
         int comptar = 0;
         int numero = 3;
-        char letra = ";
+        char letra ;
         System.out.println(letra);
         
         //creamos un bucle que compruebe en varias vueltas si 0 es igual a 3

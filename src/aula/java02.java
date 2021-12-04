@@ -31,7 +31,7 @@ public class java02 {
                          input.nextInt();
                          System.out.print("Introduce un número entero positivo: ");                               
                   }
-    }
+        }while(true);
 }
 }
     

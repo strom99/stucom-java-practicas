@@ -10,6 +10,7 @@ public class practicaClase04 {
     public static void main(String[] args) {
         int i = 0;
         int [] numeros = new int [10];
+
         numeros[0] = 1;
         numeros[1] = 2;
         numeros[2] = 3;
@@ -20,6 +21,7 @@ public class practicaClase04 {
         numeros[7] = 8;
         numeros[8] = 9;
         numeros[9] = 10;
+
         // dar vueltas con el array
         for (i = numeros.length-1 ; i >= 0 ; i--){
             System.out.println(numeros[i]);

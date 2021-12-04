@@ -8,8 +8,7 @@ public class practicaClase05 {
        de B, el 2º de A, el 2º de B, etc.
      */
     public static void main(String[] args) {
-        
-        int [] numeros1 = [];
+
     }
     
 }
