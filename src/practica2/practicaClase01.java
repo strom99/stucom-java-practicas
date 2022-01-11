@@ -8,8 +8,8 @@ public class practicaClase01 {
         //Demanar els coeficients d'una equació es 2n grau, i mostri les seves solucions reals. Si no existeixen,
         //ha d'indicar-ho.
         
-        Scanner sc = new Scanner(System.in);
-        /*System.out.println("introduce el coeficiente de A , B y C  ");
+        Scanner Coeficientes = new Scanner(System.in);
+        System.out.println("introduce el coeficiente de A , B y C  ");
         int a = Coeficientes.nextInt();
         int b = Coeficientes.nextInt();
         int c = Coeficientes.nextInt();
@@ -39,7 +39,7 @@ public class practicaClase01 {
         System.out.println("coeficiente c: "+c);
         System.out.println("la discriminacion es : "+ discriminacion);
         System.out.println("La solucion de la ecuacion1 es : "+ ecuacion1);
-        System.out.println("La solucion de la ecuacion2 es : "+ ecuacion2);*/
+        System.out.println("La solucion de la ecuacion2 es : "+ ecuacion2);
         
 }
 }

@@ -7,12 +7,5 @@ public class practicaClase49 {
     //primers.
 
     public static void main(String[] args) {
-
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("introduce un numero : ");
-        boolean primo = true;
-        int x = 0;
-
     }
 }

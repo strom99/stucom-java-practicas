@@ -27,11 +27,12 @@ public class practicaClase50 {
         System.out.println("Elige una opcion : ");
         
         int numeroMenu= sc.nextInt();
+        int numero2=0;
         
         switch (numeroMenu){
             case 1 : 
                 
-                int numero2 = sc.nextInt();
+                numero2 = sc.nextInt();
                 System.out.println("introduce el radio del circulo: ");
                 ;
             break;
