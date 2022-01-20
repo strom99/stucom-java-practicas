@@ -2,6 +2,10 @@ package UF2_metodos;
 
 
 import java.util.Scanner;
+/*
+Dado el valor de un ángulo, sería interesante saber su seno, coseno y tangente. Escribir una
+función que muestre en pantalla los datos anteriores.
+ */
 
 public class ejercicio22 {
     public static void main(String[] args) {
