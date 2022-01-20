@@ -19,7 +19,8 @@ public class ejercicio06 {
 
     public static int doble(int numIngresado){
         int valorDoble;
-        valorDoble = numIngresado * 2 ;
+        int dos = 2;
+        valorDoble = numIngresado * dos ;
 
         return (valorDoble) ;
     }
