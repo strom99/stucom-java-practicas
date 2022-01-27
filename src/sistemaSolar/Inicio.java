@@ -55,7 +55,10 @@ public class Inicio {
                     }while (distanciaSol < 0);
 
                     for (int i = 0; i < planetas.length && !espacioPlanetas ; i++){
-                        planetas[i] = new Planeta(numIdentificador , nombre , masa ,densidad,diametro,distanciaSol);
+                        if(planetas[i] == null){
+                            planetas[i] = new Planeta(numIdentificador , nombre , masa ,densidad,diametro,distanciaSol);
+                            espacioPlanetas =true;
+                        }
                     }
 
                     break;
