@@ -92,6 +92,44 @@ public class Inicio {
                         }
                     }
                     break;
+                case 4 :
+                    sc.nextLine();
+                    System.out.println("Introduce el nombre del atleta a modificar :");
+                    String name = sc.nextLine();
+                    boolean existe = false;
+                    int pos =-1;
+                    for (int i = 0; i < atletas.length & !existe ;i++){
+                        if (atletas[i]!= null && atletas[i].nombre.equalsIgnoreCase(name)){
+                            pos = i;
+                            existe = true;
+                        }
+                    }
+
+                    if (existe){
+                        boolean fin = false;
+                        do {
+                            System.out.println("Que quieres cambiar :");
+                            System.out.println("Edad [1]");
+                            System.out.println("Genero [2]");
+                            System.out.println("salir [0]");
+
+                            switch (sc.nextInt()){
+                                case 1:
+                                    System.out.println("la edad de "+atletas[pos].nombre+ " es "+ atletas[pos].edad);
+                                    System.out.println("introduce la nueva edad");
+                                    atletas[pos].edad = sc.nextInt();
+                                    break;
+                                case 2:
+                                    System.out.println("sin implementar");
+                                    break;
+                                case 0:
+                                    fin = true;
+                                    break;
+                            }
+
+                        }while (!fin);
+                    }
+                    break;
                 case 0:
                     exist = true;
                     System.out.println("adios");
