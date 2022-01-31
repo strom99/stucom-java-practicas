@@ -60,7 +60,6 @@ public class Inicio {
                             espacioPlanetas =true;
                         }
                     }
-
                     break;
                 case 2:
                     System.out.println("Lista de planetas : ");
