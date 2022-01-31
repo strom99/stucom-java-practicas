@@ -3,21 +3,24 @@ package sistemaSolar;
 import java.util.Scanner;
 
 public class Inicio {
+    public static void menu(){
+        System.out.println("Menu ");
+        System.out.println("Crear planeta [1]");
+        System.out.println("Ver planetas  [2]");
+        System.out.println("Buscar un planeta [3]");
+        System.out.println("Modificar [4]");
+        System.out.println("Eliminar un planeta [5]");
+        System.out.println("salir [0]");
+    }
+
     public static void main(String[] args) {
         Planeta planetas[] = new Planeta[5];
         boolean salida = false;
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("Menu ");
-            System.out.println("Crear planeta [1]");
-            System.out.println("Ver planetas  [2]");
-            System.out.println("Buscar un planeta [3]");
-            System.out.println("Modificar [4]");
-            System.out.println("Eliminar un planeta [5]");
-            System.out.println("salir [0]");
+            menu();
             int opcion = sc.nextInt();
-
             switch (opcion) {
                 case 1:
 
@@ -38,8 +41,6 @@ public class Inicio {
                             cont++;
                         }
                     }
-<<<<<<< HEAD
-=======
 
                     if (cont != 0) {
                         do {
@@ -81,7 +82,6 @@ public class Inicio {
                     } else {
                         System.out.println("no hay espacio");
                     }
->>>>>>> bbfb57ecacac9b7dfb113e1875531106aa25beb6
                     break;
                 case 2:
                     System.out.println("Lista de planetas : ");
@@ -236,6 +236,21 @@ public class Inicio {
                     }
                     break;
                 case 5 :
+
+                    boolean planetaEliminado = false;
+                    sc.nextLine();
+                    String nombreEliminar ;
+                    System.out.println("Introduce el nombre del planeta que quieres eliminar :");
+                    nombreEliminar = sc.nextLine();
+                    for (int i = 0 ; i < planetas.length && !planetaEliminado ; i++){
+                        if(planetas[i].nombre.equals(nombreEliminar)){
+                            planetas[i] = null;
+                            planetaEliminado = true;
+                            System.out.println("planeta eliminado");
+                        }
+                    }
+
+
                     break;
                 case 0:
                     System.out.println("Fin del programa");
@@ -245,4 +260,6 @@ public class Inicio {
 
         }while (!salida);
     }
+
+
 }
