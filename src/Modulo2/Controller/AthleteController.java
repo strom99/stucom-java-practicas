@@ -109,8 +109,10 @@ public class AthleteController {
             if(validationDNI(nifModify)){
                 if(repeatNIF(nifModify) == false) {
                     boolean salirModidy = false;
+                    System.out.println("fffff");
                     do {
-                        System.out.println("Que atributo del atleta quieres modificar : ");
+                        Athlete athToMod =  getAthleteByNif(nifModify);
+                        System.out.println("Que atributo del atleta quieres modificar : " + athToMod.getNif());
                         System.out.println(" Modify nombre [1]");
                         System.out.println(" Modify edad [2]");
                         System.out.println(" Modify genero [3]");
@@ -143,6 +145,15 @@ public class AthleteController {
         }
     }
 
-    public static Athlete getAthleteByNif (){}
+    public static Athlete getAthleteByNif (String nifModify){
+        Athlete athlete = null;
+        for(int i = 0; i < athletes.length && athlete == null ; i++){
+            if(athletes[i] != null && athletes[i].getNif().equals(nifModify)){
+                athlete = athletes[i];
+            }
+
+        }
+        return athlete;
+    }
 }
 
