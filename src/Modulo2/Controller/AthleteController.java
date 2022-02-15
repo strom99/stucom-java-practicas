@@ -6,25 +6,12 @@ import java.util.Scanner;
 
 import static Modulo2.MyLibrary.Arrays.isEmpty;
 import static Modulo2.MyLibrary.Arrays.isFull;
-import static Modulo2.MyLibrary.DataValidation.readInBetweenMinAndMax;
-import static Modulo2.MyLibrary.DataValidation.validationDNI;
+import static Modulo2.MyLibrary.DataValidation.*;
 
 public class AthleteController {
     public static Athlete[] athletes;
     public static int contador = 0;
     String dni;
-
-    public static boolean repeatNIF(String nif){
-        // verificacion si ya existe el dni repetido
-        boolean esRepetido = false;
-        for (int j = 0; j < athletes.length && !esRepetido; j++) {
-            if (athletes[j] != null && athletes[j].getNif().equalsIgnoreCase(nif)) {
-                System.out.println("Ya existe un atleta con este Dni");
-                esRepetido = true;
-            }
-        }
-        return  esRepetido;
-    }
 
     public static void registerAthlete () {
 
@@ -43,7 +30,7 @@ public class AthleteController {
             do{
                 System.out.println("introduce el dni : ");
                 nif = sc.nextLine();
-            }while(validationDNI(nif) == false);
+            }while(!validationDNI(nif));
 
             if(repeatNIF(nif) == false){
                 System.out.println("Ingrese el nombre del atleta");
@@ -108,5 +95,51 @@ public class AthleteController {
         }
 
     }
+
+    public static void modifyAthlete(){
+        boolean salirModidy = false;
+        Scanner sc = new Scanner(System.in);
+        if(athletes == null){
+            System.out.println("Aun no hay ningun atleta");
+        }else{
+            System.out.println("Introduce el nif del atleta que deseas modificar ");
+            String nifModify = sc.nextLine();
+
+            if(validationDNI(nifModify)){
+                if(repeatNIF(nifModify)){
+                    do{
+                        System.out.println("Que atributo del atleta quieres modificar : ");
+                        System.out.println(" Modify nombre [1]");
+                        System.out.println(" Modify edad [2]");
+                        System.out.println(" Modify genero [3]");
+                        System.out.println(" Exit  menu [4]");
+                        int opcionAtributo = sc.nextInt();
+
+                        switch (opcionAtributo){
+                            case 1 :
+                                System.out.println("Introduce el nuevo nombre");
+                                break;
+                            case 2:
+                                System.out.println("Introduce la nueva edad : ");
+                                break;
+                            case 3:
+                                System.out.println("Introduce el nuevo genero :");
+                                break;
+                            case 4:
+                                System.out.println("Saliste");
+                                salirModidy = true;
+                            default:
+                                System.out.println("Wrong opcion");
+
+                        }
+                    }while ();
+                }else{
+                    System.out.println("el nif introducido es incorrecto");
+                }
+            }
+        }
+
+    }
 }
+
 

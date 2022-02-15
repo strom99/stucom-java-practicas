@@ -2,8 +2,7 @@ package Modulo2.View;
 
 import java.util.Scanner;
 
-import static Modulo2.Controller.AthleteController.registerAthlete;
-import static Modulo2.Controller.AthleteController.showAthletes;
+import static Modulo2.Controller.AthleteController.*;
 
 public class Inicio {
 
@@ -33,8 +32,7 @@ public class Inicio {
                     showAthletes();
                     break;
                 case 3:
-
-                    salidaMenu = true;
+                    modifyAthlete();
                     break;
                 case 4:
 

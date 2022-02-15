@@ -2,6 +2,8 @@ package Modulo2.MyLibrary;
 
 import java.util.Scanner;
 
+import static Modulo2.Controller.AthleteController.athletes;
+
 public class DataValidation {
 
     public static int readInBetweenMinAndMax(int min, int max) {
@@ -26,5 +28,32 @@ public class DataValidation {
         return nif.matches("^[0-9]{8}[A-Z]$");
     }
 
+    public static boolean repeatNIF(String nif){
+        // verificacion si ya existe el dni repetido
+        boolean esRepetido = false;
+        for (int j = 0; j < athletes.length && !esRepetido; j++) {
+            if (athletes[j] != null && athletes[j].getNif().equalsIgnoreCase(nif)) {
+                System.out.println("Ya existe un atleta con este Dni");
+                esRepetido = true;
+            }
+        }
+        return  esRepetido;
+    }
+    /*
+    public static String dni(int number, int caracter){
+
+        do{
+            Scanner sc = new Scanner(System.in);
+            id = sc.nextLine();
+            if(id.length() == number + caracter){
+
+                if(){
+
+                }
+            }
+
+        }while (!idlength || !numbersOK || !charOK);
+        return id;
+    }*/
 
 }
