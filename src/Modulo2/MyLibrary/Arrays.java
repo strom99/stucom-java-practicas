@@ -28,5 +28,16 @@ public class Arrays {
         }
         return hayEspacio;
     }
+    public static int  firstFreePosition (Object array []) {
+        boolean full = true;
+        int position = -1;
+        for (int i = 0; i < array.length && full; i++) {
+            if (array[i] == null) {
+                full = false;
+                position = i;
+            }
+        }
+        return position;
+    }
 
 }

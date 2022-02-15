@@ -33,7 +33,6 @@ public class DataValidation {
         boolean esRepetido = false;
         for (int j = 0; j < athletes.length && !esRepetido; j++) {
             if (athletes[j] != null && athletes[j].getNif().equalsIgnoreCase(nif)) {
-                System.out.println("Ya existe un atleta con este Dni");
                 esRepetido = true;
             }
         }

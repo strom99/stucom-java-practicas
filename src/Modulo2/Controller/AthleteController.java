@@ -1,11 +1,11 @@
 package Modulo2.Controller;
 
 import Modulo2.Model.Athlete;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.Scanner;
 
-import static Modulo2.MyLibrary.Arrays.isEmpty;
-import static Modulo2.MyLibrary.Arrays.isFull;
+import static Modulo2.MyLibrary.Arrays.*;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class AthleteController {
@@ -54,11 +54,12 @@ public class AthleteController {
                         System.out.println("Ingresa tu sexo");
                         sexo = sc.nextLine();
                     } while (!sexo.equals("M") && !sexo.equals("F"));
-                    athletes[contador] = new Athlete(nif, name, age, sexo);
+                    athletes[firstFreePosition(athletes)] = new Athlete(nif, name, age, sexo);
+                    System.out.println("Atleta creado!!");
                 } else {
-                    athletes[contador] = new Athlete(nif, name, age);
+                    athletes[firstFreePosition(athletes)] = new Athlete(nif, name, age);
+                    System.out.println("Atleta creado!!");
                 }
-                contador++;
 
             }
         }
@@ -97,7 +98,7 @@ public class AthleteController {
     }
 
     public static void modifyAthlete(){
-        boolean salirModidy = false;
+
         Scanner sc = new Scanner(System.in);
         if(athletes == null){
             System.out.println("Aun no hay ningun atleta");
@@ -106,8 +107,9 @@ public class AthleteController {
             String nifModify = sc.nextLine();
 
             if(validationDNI(nifModify)){
-                if(repeatNIF(nifModify)){
-                    do{
+                if(repeatNIF(nifModify) == false) {
+                    boolean salirModidy = false;
+                    do {
                         System.out.println("Que atributo del atleta quieres modificar : ");
                         System.out.println(" Modify nombre [1]");
                         System.out.println(" Modify edad [2]");
@@ -115,8 +117,8 @@ public class AthleteController {
                         System.out.println(" Exit  menu [4]");
                         int opcionAtributo = sc.nextInt();
 
-                        switch (opcionAtributo){
-                            case 1 :
+                        switch (opcionAtributo) {
+                            case 1:
                                 System.out.println("Introduce el nuevo nombre");
                                 break;
                             case 2:
@@ -128,18 +130,19 @@ public class AthleteController {
                             case 4:
                                 System.out.println("Saliste");
                                 salirModidy = true;
+                                break;
                             default:
                                 System.out.println("Wrong opcion");
 
                         }
-                    }while ();
-                }else{
-                    System.out.println("el nif introducido es incorrecto");
+                    } while (!salirModidy);
                 }
+            }else{
+                    System.out.println("el nif introducido es incorrecto");
             }
         }
-
     }
-}
 
+    public static Athlete getAthleteByNif (){}
+}
 
