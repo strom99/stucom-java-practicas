@@ -35,8 +35,7 @@ public class Inicio {
                     modifyAthlete();
                     break;
                 case 4:
-
-                    salidaMenu = true;
+                    deleteAthlete();
                     break;
                 case 5:
                     System.out.println("Adios !!!");

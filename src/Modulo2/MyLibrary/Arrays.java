@@ -2,7 +2,10 @@ package Modulo2.MyLibrary;
 
 import Modulo2.Model.Athlete;
 
+import static Modulo2.Controller.AthleteController.athletes;
+
 public class Arrays {
+
     public static boolean isFull (Object array []) {
         int contador = 0;
         boolean hayEspacio = false;
@@ -14,6 +17,7 @@ public class Arrays {
         return hayEspacio;
     }
 
+    // recorre el array e inicia un contador para ver si el array esta vacio
     public static boolean isEmpty (Athlete [] athletes) {
         int contador = 0;
         boolean hayEspacio = false;
@@ -38,6 +42,31 @@ public class Arrays {
             }
         }
         return position;
+    }
+
+    // busca la posicion del atleta en el array y si coincide con el nif ingresado
+    public static Athlete getAthleteByNif(String nifModify) {
+        Athlete athlete = null;
+        for (int i = 0; i < athletes.length; i++) {
+            if (athletes[i] != null && athletes[i].getNif().equals(nifModify)) {
+                athlete = athletes[i];
+                break;
+            }
+
+        }
+        return athlete;
+    }
+
+    // busca el indice del array y compara el nif
+    public static int getIndexByAthleteNif(String nif) {
+        int index = -1;
+        for (int i = 0; i < athletes.length; i++) {
+            if (athletes[i] != null && athletes[i].getNif().equals(nif)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
 }

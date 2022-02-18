@@ -6,17 +6,17 @@ public class Athlete {
     private int age;
     private String gender;
 
-    public Athlete(String name, String nif, int age) {
-        this.name = name;
+    public Athlete( String nif, String name, int age) {
         this.nif = nif;
+        this.name = name;
         this.age = age;
     }
 
-    public Athlete(String name, String nif, int age, String gender) {
+    public Athlete(String nif, String name, int age, String gender) {
         //this.name = name;
         //this.nif = nif;
         //this.age = age;
-        this(name,nif,age);
+        this(nif,name,age);
         this.gender = gender;
     }
 

@@ -28,7 +28,7 @@ public class DataValidation {
         return nif.matches("^[0-9]{8}[A-Z]$");
     }
 
-    public static boolean repeatNIF(String nif){
+    public static boolean repeatNIF(String nif) {
         // verificacion si ya existe el dni repetido
         boolean esRepetido = false;
         for (int j = 0; j < athletes.length && !esRepetido; j++) {
@@ -36,23 +36,7 @@ public class DataValidation {
                 esRepetido = true;
             }
         }
-        return  esRepetido;
+        return esRepetido;
     }
-    /*
-    public static String dni(int number, int caracter){
-
-        do{
-            Scanner sc = new Scanner(System.in);
-            id = sc.nextLine();
-            if(id.length() == number + caracter){
-
-                if(){
-
-                }
-            }
-
-        }while (!idlength || !numbersOK || !charOK);
-        return id;
-    }*/
 
 }
