@@ -3,6 +3,7 @@ package Modulo2.View;
 import java.util.Scanner;
 
 import static Modulo2.Controller.AthleteController.*;
+import static Modulo2.Controller.RaceController.registerRace;
 
 public class Inicio {
 
@@ -13,7 +14,10 @@ public class Inicio {
         System.out.println("[2] View Athlete ");
         System.out.println("[3] Modify Athlete ");
         System.out.println("[4] Delete Athlete ");
-        System.out.println("[5] Exit");
+        System.out.println("[5] Register Race ");
+        System.out.println("[6] View races ");
+        System.out.println("[7] Delete Race ");
+        System.out.println("[0] Exit");
     }
 
     public static void main(String[] args){
@@ -29,15 +33,27 @@ public class Inicio {
                     registerAthlete();
                     break;
                 case 2:
-                    showAthletes();
+                    showAthletes("all");
                     break;
                 case 3:
                     modifyAthlete();
                     break;
                 case 4:
-                    deleteAthlete();
+                    //deleteAthlete();
+                    salidaMenu = true;
                     break;
                 case 5:
+                    registerRace();
+                    break;
+                case 6 :
+                    System.out.println("vercarrera");
+                    salidaMenu = true;
+                    break;
+                case 7:
+                    System.out.println("eliminar carrera");
+                    salidaMenu = true;
+                    break;
+                case 0 :
                     System.out.println("Adios !!!");
                     salidaMenu = true;
                     break;

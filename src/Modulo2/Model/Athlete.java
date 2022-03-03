@@ -1,15 +1,23 @@
 package Modulo2.Model;
 
+import java.util.ArrayList;
+
 public class Athlete {
     private String name;
     private String nif;
+    private  int bib;
+    public static int totalBib = 1;
     private int age;
     private String gender;
+    private ArrayList<Race> athletesRace;
 
     public Athlete( String nif, String name, int age) {
         this.nif = nif;
+        this.bib = totalBib++;
         this.name = name;
         this.age = age;
+        athletesRace = new ArrayList<>();
+        showMessage();
     }
 
     public Athlete(String nif, String name, int age, String gender) {
@@ -18,6 +26,10 @@ public class Athlete {
         //this.age = age;
         this(nif,name,age);
         this.gender = gender;
+    }
+
+    public void showMessage(){
+        System.out.println("Memory address : " + this + ", Name : " + getName() + ", Id : "+ getNif()+ ", Bib : "+ getBib());
     }
 
     public String getName() {
@@ -31,6 +43,8 @@ public class Athlete {
     public String getNif() {
         return nif;
     }
+
+    public int getBib(){ return bib;}
 
     public int getAge() {
         return age;

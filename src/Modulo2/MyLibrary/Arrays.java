@@ -5,7 +5,7 @@ import Modulo2.Model.Athlete;
 import static Modulo2.Controller.AthleteController.athletes;
 
 public class Arrays {
-
+    /*
     public static boolean isFull (Object array []) {
         int contador = 0;
         boolean hayEspacio = false;
@@ -15,10 +15,10 @@ public class Arrays {
             }
         }
         return hayEspacio;
-    }
+    }*/
 
     // recorre el array e inicia un contador para ver si el array esta vacio
-    public static boolean isEmpty (Athlete [] athletes) {
+    /*public static boolean isEmpty (Athlete [] athletes) {
         int contador = 0;
         boolean hayEspacio = false;
         for (int i = 0; i < athletes.length; i++) {
@@ -31,7 +31,7 @@ public class Arrays {
             hayEspacio = true;
         }
         return hayEspacio;
-    }
+    }*/
     public static int  firstFreePosition (Object array []) {
         boolean full = true;
         int position = -1;
@@ -47,9 +47,9 @@ public class Arrays {
     // busca la posicion del atleta en el array y si coincide con el nif ingresado
     public static Athlete getAthleteByNif(String nifModify) {
         Athlete athlete = null;
-        for (int i = 0; i < athletes.length; i++) {
-            if (athletes[i] != null && athletes[i].getNif().equals(nifModify)) {
-                athlete = athletes[i];
+        for (int i = 0; i < athletes.size(); i++) {
+            if (athletes.get(i).getNif().equals(nifModify)) {
+                athlete = athletes.get(i);
                 break;
             }
 
@@ -58,15 +58,16 @@ public class Arrays {
     }
 
     // busca el indice del array y compara el nif
+    /*
     public static int getIndexByAthleteNif(String nif) {
         int index = -1;
-        for (int i = 0; i < athletes.length; i++) {
+        for (int i = 0; i < athletes.size(); i++) {
             if (athletes[i] != null && athletes[i].getNif().equals(nif)) {
                 index = i;
                 break;
             }
         }
         return index;
-    }
+    }*/
 
 }

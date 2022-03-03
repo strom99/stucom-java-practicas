@@ -28,15 +28,22 @@ public class DataValidation {
         return nif.matches("^[0-9]{8}[A-Z]$");
     }
 
+    public static boolean validationID(String id){
+        //validacion para que el dni cuente con 8 numero y una letra entre la A a la Z
+        return id.matches("^[0-9]{3}[A-Z]{2}$");
+    }
+
     public static boolean repeatNIF(String nif) {
         // verificacion si ya existe el dni repetido
+        
         boolean esRepetido = false;
-        for (int j = 0; j < athletes.length && !esRepetido; j++) {
-            if (athletes[j] != null && athletes[j].getNif().equalsIgnoreCase(nif)) {
+        for (int j = 0; j < athletes.size() && !esRepetido; j++) {
+            if (nif.equalsIgnoreCase(athletes.get(j).getNif())) {
                 esRepetido = true;
             }
         }
         return esRepetido;
+        
     }
 
 }

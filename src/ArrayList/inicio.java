@@ -15,6 +15,20 @@ public class inicio {
         System.out.println("tamaño"+ superheroes);
         System.out.println("tamaño"+ superheroes.size());
 
+        char ultima;
+        int count = 0;
+        String nombre = "alisson";
+        System.out.println(nombre);
+        for(int i = 0; i < nombre.length() ; i++){
+            System.out.println(nombre.charAt(i));
+            if(nombre.charAt(i) == 's'){
+                ultima = nombre.charAt(i);
+                ++count;
+            }
+        }
+
+        System.out.println(count);
+
         for (int i = 0; i < 5 ; i++){
             //.add() añade los valores siempre al final de la fila
             superheroes.add(new Superheroe("mercedes"));
@@ -34,7 +48,7 @@ public class inicio {
         for (int i = 0; i < superheroes.size() ; i++){
             System.out.println(superheroes.get(i).getName());
         }
-
+        /*
         // como borrar
         // remove(objet)
         System.out.println("-------------------------------------");
@@ -62,7 +76,7 @@ public class inicio {
         //contexto general
         // ARRAY ----->>  no es mutable
         // ARRAY LIST --->> es mutable( crece) , solo se almacenan objetos , no de primitivos
-
+        /*
         // String
         System.out.println("-------------------------------------");
         String x = new String("pepe");
@@ -89,5 +103,9 @@ public class inicio {
         //StringBuilder ---- son mutables
         StringBuilder t = new StringBuilder();
         t.append("peres"); // concatena perez , poniendolo en la misma posicion , stringbuilder es mutable , es diferente al string , si usas el equals , no seran iguales
+
+        //FUNCION CONTAINS();
+        //*/
+
     }
 }
