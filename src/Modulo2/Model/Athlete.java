@@ -65,4 +65,8 @@ public class Athlete {
     public boolean isSenior() {
         return getAge() > 50;
     }
+
+    public ArrayList<Race> getAthletesRace(){
+        return athletesRace;
+    }
 }

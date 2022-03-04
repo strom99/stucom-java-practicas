@@ -20,6 +20,7 @@ public class Race {
         this.kilometros = kilometros;
         participantes = new ArrayList<>();
         fechaHoraRegistro = LocalDateTime.now();
+        show();
     }
 
     public String getId() {
