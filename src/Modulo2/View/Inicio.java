@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static Modulo2.Controller.AthleteController.*;
 import static Modulo2.Controller.RaceController.registerRace;
+import static Modulo2.Controller.RaceController.showRaces;
 
 public class Inicio {
 
@@ -46,8 +47,7 @@ public class Inicio {
                     registerRace();
                     break;
                 case 6 :
-                    System.out.println("vercarrera");
-                    salidaMenu = true;
+                    showRaces();
                     break;
                 case 7:
                     System.out.println("eliminar carrera");

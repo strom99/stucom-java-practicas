@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Modulo2.Controller.AthleteController.athletes;
+import static Modulo2.MyLibrary.Arrays.getAthleteByNif;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class RaceController {
@@ -98,11 +99,12 @@ public class RaceController {
                                     idAthlete = sc.nextLine();
                                 }while (!validationDNI(idAthlete));
                                 if(repeatNIF(idAthlete)){
+                                    System.out.println("atleta verifica");
                                     // revisa el atleta especifica si esta ne la carrera
-                                    if(registeringRace.getParticipantes().contains(idAthlete)){
+                                    if(registeringRace.getParticipantes().contains(getAthleteByNif(idAthlete))){
                                         System.out.println("El atleta ya existe en la carrera");
                                     }else{
-                                        Athlete atleta = Arrays.getAthleteByNif(idAthlete);
+                                        Athlete atleta = getAthleteByNif(idAthlete);
                                         registeringRace.getParticipantes().add(atleta);
                                         atleta.getAthletesRace().add(registeringRace);
                                         exit = true;
@@ -128,16 +130,17 @@ public class RaceController {
 
         public static void showRaces(){
             if (races.size() == 0) {
-                System.out.println("Aun no hay atletas creados");
+                System.out.println("Aun no hay carreras creadas");
             } else {
                     for(int i = 0; i < races.size(); i++){
                         System.out.println("ID :" + races.get(i).getId());
                         System.out.println("Localidad :" + races.get(i).getLocalidad());
-                        System.out.println("Kilometros : "+ athletes.get(i).getAge());
+                        System.out.println("Kilometros : "+ races.get(i).getKilometros());
                         System.out.println("Time register : "+ races.get(i).getFechaHoraRegistro());
-                        System.out.println("Atletas participantes en la carrera :"+ races.get(i).getId());
+                        System.out.println("Atletas participantes en la carrera :");
 
                         if(races.get(i).getParticipantes().size() > 0){
+
                             for(int j = 0; j < races.get(i).getParticipantes().size() ; j++){
                                 Athlete participante = races.get(i).getParticipantes().get(j);
 
@@ -152,6 +155,8 @@ public class RaceController {
                                 }
                                 System.out.println(" ");
                             }
+                        }else{
+                            System.out.println("no hay atletas participàntes ");
                         }
                     }
                 }

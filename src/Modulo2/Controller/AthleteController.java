@@ -1,6 +1,7 @@
 package Modulo2.Controller;
 
 import Modulo2.Model.Athlete;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -148,6 +149,7 @@ public class AthleteController {
                                 System.out.println("opcion incorrecta");
 
                         }
+                        System.out.println("Atributo Modificado!");
                     } else {
                         System.out.println("no hay nada aun!");
                         salirModidy = true;
