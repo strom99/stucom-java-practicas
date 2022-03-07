@@ -10,8 +10,8 @@ import static Modulo2.MyLibrary.DataValidation.*;
 
 public class AthleteController {
 
-    //public static Athlete[] athletes;
     public static ArrayList<Athlete> athletes = new ArrayList<>();
+
 
 
     public static void registerAthlete() {
