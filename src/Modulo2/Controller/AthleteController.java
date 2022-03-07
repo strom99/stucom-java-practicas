@@ -79,12 +79,21 @@ public class AthleteController {
                     System.out.println("DNI :" + athletes.get(i).getNif());
                     System.out.println("Nombre :" + athletes.get(i).getName());
                     System.out.println("Edad : "+ athletes.get(i).getAge());
+
                     if(athletes.get(i).getGender() != null){
                         System.out.println("Genero: "+athletes.get(i).getGender());
                     }
                     if(athletes.get(i).isSenior()){
                         System.out.println("Es mayor de Edad ");
                     }
+
+                    System.out.println("Carreras por "+ athletes.get(i).getName());
+                    if(athletes.get(i).getAthletesRace().isEmpty()){
+                        System.out.println("No hay carreras registradas");
+                    }else{
+                        System.out.println("codeRace : "+ athletes.get(i).getAthletesRace().get(i).getId() + " Localidad : " + athletes.get(i).getAthletesRace().get(i).getLocalidad());
+                    }
+
                     System.out.println(" ");
                 }
             }else if(atributo.equalsIgnoreCase("name")){

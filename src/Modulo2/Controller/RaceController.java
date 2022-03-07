@@ -3,6 +3,7 @@ package Modulo2.Controller;
 import Modulo2.Model.Athlete;
 import Modulo2.Model.Race;
 import Modulo2.MyLibrary.Arrays;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -30,13 +31,11 @@ public class RaceController {
         boolean freeAtletes = false;
         for(int i = 0; i < athletes.size() ; i++){
             // si hay algun atleta disponible , devuelve true
-            if(!races.get(i).getParticipantes().contains(athletes.get(i))){
-                System.out.println("Athlete : "+ athletes.get(i).getName());
-                System.out.println(" WITH ID : "+ athletes.get(i).getNif());
-                freeAtletes = true;
-            }else{
-                System.out.println("No hay ninguna atleta registrado");
-            }
+                if(!race.getParticipantes().contains(athletes.get(i))){
+                    System.out.println("Athlete : "+ athletes.get(i).getName());
+                    System.out.println(" WITH ID : "+ athletes.get(i).getNif());
+                    freeAtletes = true;
+                }
         }
         return freeAtletes;
     }
@@ -105,32 +104,38 @@ public class RaceController {
                                 if(registeringRace.getParticipantes().contains(getAthleteByNif(idAthlete))){
                                     System.out.println("El atleta ya esta registrado en la carrera");
                                 }else{
-                                    System.out.println("agregando");
-                                    //Athlete atleta1 = getAthleteByNif(idAthlete);
-                                    //System.out.println(atleta1);
-                                    System.out.println(registeringRace.getParticipantes());
                                     registeringRace.getParticipantes().add(getAthleteByNif(idAthlete));
-                                    System.out.println("atleta");
-                                    //athletes.getAthletesRace().add(registeringRace);
-                                    exit = true;
+                                    Arrays.getAthleteByNif(idAthlete).getAthletesRace().add(registeringRace);
                                 }
 
                             }else{
                                 System.out.println("El atleta no existe");
                             }
 
+                            System.out.println("Quieres añadir otra atleta ?? [Y][N]");
+                            option = sc.nextLine().charAt(0);
+
+                            if(option == 'Y'){
+
+                            }else if(option == 'N'){
+                                System.out.println("bye");
+                                exit = true;
+                            }else{
+                                System.out.println("opcion incorrecta ,asumimos que no quieres añadir mas atletas");
+                            }
+
                         }else{
                             System.out.println("No hay atletas disponibles parta una carrera");
                             exit = true;
-
                         }
-
                     }while (!exit);
+                }else{
+                    System.out.println("opcion incorrecta , es Y o N");
                 }
             } while (option != 'Y' && option != 'N');
 
         }else{
-            System.out.println("El id ya existe!!!!!");
+            System.out.println("Esta carrera ya fue registrada");
         }
     }
 
@@ -139,6 +144,7 @@ public class RaceController {
             System.out.println("Aun no hay carreras creadas");
         } else {
             for(int i = 0; i < races.size(); i++){
+                System.out.println("---------------------------------------------------");
                 System.out.println("ID :" + races.get(i).getId());
                 System.out.println("Localidad :" + races.get(i).getLocalidad());
                 System.out.println("Kilometros : "+ races.get(i).getKilometros());
