@@ -9,6 +9,7 @@ public class Athlete {
     public static int totalBib = 1;
     private int age;
     private String gender;
+    //atletas que participan en una carrera
     private ArrayList<Race> athletesRace;
 
     public Athlete( String nif, String name, int age) {
@@ -68,5 +69,9 @@ public class Athlete {
 
     public ArrayList<Race> getAthletesRace(){
         return athletesRace;
+    }
+
+    public void setAthletesRace(ArrayList<Race> athletesRace){
+
     }
 }

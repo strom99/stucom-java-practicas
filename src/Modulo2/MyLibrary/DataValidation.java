@@ -35,7 +35,6 @@ public class DataValidation {
 
     public static boolean repeatNIF(String nif) {
         // verificacion si ya existe el dni repetido
-        
         boolean esRepetido = false;
         for (int j = 0; j < athletes.size() && !esRepetido; j++) {
             if (nif.equalsIgnoreCase(athletes.get(j).getNif())) {
@@ -45,5 +44,6 @@ public class DataValidation {
         return esRepetido;
         
     }
+
 
 }

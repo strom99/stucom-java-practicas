@@ -43,5 +43,9 @@ public class Race {
         return participantes;
     }
 
+    public ArrayList<Athlete> setParticipantes(){
+        return participantes;
+    }
+
 
 }
