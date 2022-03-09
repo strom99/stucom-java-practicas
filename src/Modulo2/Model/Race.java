@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Race {
     private String id;
-    private String localidad;
-    private int kilometros;
+    private String location;
+    private int kilometres;
     private LocalDateTime fechaHoraRegistro;
-    private ArrayList<Athlete> participantes;
+    private ArrayList<Athlete> participants;
 
     public void show(){
         System.out.println("Race created --> Memory address: "+ this + " code: "+ getId()+ ", datetime: "+ getFechaHoraRegistro() );
@@ -16,9 +16,9 @@ public class Race {
 
     public Race (String id , String localidad , int kilometros){
         this.id = id;
-        this.localidad = localidad;
-        this.kilometros = kilometros;
-        participantes = new ArrayList<>();
+        this.location = localidad;
+        this.kilometres = kilometros;
+        participants = new ArrayList<>();
         fechaHoraRegistro = LocalDateTime.now();
         show();
     }
@@ -28,11 +28,11 @@ public class Race {
     }
 
     public String getLocalidad() {
-        return localidad;
+        return location;
     }
 
     public int getKilometros() {
-        return kilometros;
+        return kilometres;
     }
 
     public LocalDateTime getFechaHoraRegistro() {
@@ -40,11 +40,11 @@ public class Race {
     }
 
     public ArrayList<Athlete> getParticipantes() {
-        return participantes;
+        return participants;
     }
 
     public ArrayList<Athlete> setParticipantes(){
-        return participantes;
+        return participants;
     }
 
 

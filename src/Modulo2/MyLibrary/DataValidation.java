@@ -11,12 +11,12 @@ public class DataValidation {
         int num;
         boolean exit = false;
         do {
-            System.out.println("Introduce un numero entre " + min + " y " + max);
+            System.out.println("Enter a number between " + min + " and " + max);
             num = sc.nextInt();
             if (min <= num && num <= max)
                 exit = true;
             else
-                System.out.println("Pon un valor entree 1 y 10");
+                System.out.println("put a value between 1 and 10");
         } while (!exit);
 
         return num;
@@ -35,13 +35,13 @@ public class DataValidation {
 
     public static boolean repeatNIF(String nif) {
         // verificacion si ya existe el dni repetido
-        boolean esRepetido = false;
-        for (int j = 0; j < athletes.size() && !esRepetido; j++) {
+        boolean isrepeat = false;
+        for (int j = 0; j < athletes.size() && !isrepeat; j++) {
             if (nif.equalsIgnoreCase(athletes.get(j).getNif())) {
-                esRepetido = true;
+                isrepeat = true;
             }
         }
-        return esRepetido;
+        return isrepeat;
         
     }
 

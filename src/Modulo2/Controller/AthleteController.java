@@ -1,64 +1,63 @@
 package Modulo2.Controller;
 
 import Modulo2.Model.Athlete;
-import jdk.swing.interop.SwingInterOpUtils;
+import Modulo2.Model.Race;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Modulo2.MyLibrary.Arrays.*;
+import static Modulo2.Controller.RaceController.getRaceById;
+import static Modulo2.Controller.RaceController.races;
+import static Modulo2.MyLibrary.Arrays.getAthleteByNif;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class AthleteController {
 
     public static ArrayList<Athlete> athletes = new ArrayList<>();
 
+    public static ArrayList<Athlete> getAthletes (){
+        return athletes;
+    }
 
 
     public static void registerAthlete() {
         Scanner sc = new Scanner(System.in);
-        /*
-        if (athletes == null) {
-        athletes = new Athlete[readInBetweenMinAndMax(1, 10)];
-        }*/
 
-        /*if (!isFull(athletes)) {
-        System.out.println("No hay espacio");
-
-        } else {*/
         String nif;
         do {
-            System.out.println("Introduce el nif: ");
+            System.out.println("Enter the Nif: ");
             nif = sc.nextLine();
         } while (!validationDNI(nif));
 
         if (repeatNIF(nif) == false) {
-            System.out.println("Ingrese el nombre del atleta");
+            System.out.println("Enter the name of the athlete: ");
             String name = sc.nextLine();
 
             int age;
             do {
-                System.out.println("Ingrese la edad");
+                System.out.println("Enter the age of the athlete: ");
                 age = sc.nextInt();
             } while (age < 1);
 
-            char eleccion;
+            char option;
             sc.nextLine();
             do {
-                System.out.println("¿Quieres especificar tu sexo? (S/N)");
-                eleccion = sc.nextLine().charAt(0);
-            } while (eleccion != 'S' && eleccion != 'N');
+                System.out.println("Do you want to specify your gender (S/N)");
+                option = sc.nextLine().charAt(0);
+            } while (option != 'S' && option != 'N');
 
             // eleccion de si el usuario quiere poner su genero , como opcional
-            if (eleccion == 'S') {
-                String sexo;
+            if (option == 'S') {
+                String gender;
                 do {
                     System.out.println("Ingresa tu sexo");
-                    sexo = sc.nextLine();
-                } while (!sexo.equals("M") && !sexo.equals("F"));
-                athletes.add(new Athlete(nif ,name, age, sexo));
+                    gender = sc.nextLine();
+                } while (!gender.equals("M") && !gender.equals("F"));
+
+                System.out.println("error");
+                athletes.add(new Athlete(nif ,name, age, gender));
                 System.out.println("Atleta creado!!");
-            } else if (eleccion == 'N') {
+            } else if (option == 'N') {
                 athletes.add(new Athlete(nif ,name, age));
                 System.out.println("Atleta creado!!");
             }
@@ -66,40 +65,49 @@ public class AthleteController {
     }
 
 
-    public static void showAthletes(String atributo) {
-
+    public static void showAthletes() {
         if (athletes.size() == 0) {
-            System.out.println("Aun no hay atletas creados");/*
-
-        } else if (isEmpty(athletes)) {
-            System.out.println("Aun no hay datos en el array");*/
+            System.out.println("There are no athletes created yet");
         } else {
-            if(atributo.equalsIgnoreCase("all")){
                 for(int i = 0; i < athletes.size(); i++){
-                    System.out.println("DNI :" + athletes.get(i).getNif());
-                    System.out.println("Nombre :" + athletes.get(i).getName());
-                    System.out.println("Edad : "+ athletes.get(i).getAge());
+                    System.out.println("Nif :" + athletes.get(i).getNif());
+                    System.out.println("Name :" + athletes.get(i).getName());
+                    System.out.println("Age : "+ athletes.get(i).getAge());
 
                     if(athletes.get(i).getGender() != null){
-                        System.out.println("Genero: "+athletes.get(i).getGender());
+                        System.out.println("Gender: "+athletes.get(i).getGender());
                     }
                     if(athletes.get(i).isSenior()){
-                        System.out.println("Es mayor de Edad ");
+                        System.out.println("He's older");
                     }
 
-                    System.out.println("Carreras por "+ athletes.get(i).getName());
-                    if(athletes.get(i).getAthletesRace().isEmpty()){
-                        System.out.println("No hay carreras registradas");
+                    System.out.println("Race for by "+ athletes.get(i).getName());
+                    if(athletes.get(i).getAthletesRace().size() > 0){
+                        for(int j = 0 ; j < athletes.get(i).getAthletesRace().size() ; j++){
+                            Race rute =  athletes.get(i).getAthletesRace().get(j);
+                            System.out.println("CodeRace : "+ rute.getId() + " Location : " + rute.getLocalidad());
+                        }
                     }else{
-                        System.out.println("codeRace : "+ athletes.get(i).getAthletesRace().get(i).getId() + " Localidad : " + athletes.get(i).getAthletesRace().get(i).getLocalidad());
+                        System.out.println("Not registered races");
                     }
 
                     System.out.println(" ");
                 }
-            }else if(atributo.equalsIgnoreCase("name")){
-                System.out.println("nothing");
+        }
+    }
+
+    public static boolean showRacesNotRegister(Athlete athlete){
+        boolean freeRaces = false;
+        for(int i = 0; i < races.size() ; i++){
+            // si hay algun atleta disponible , devuelve true
+            if(!athlete.getAthletesRace().contains(races.get(i))){
+                System.out.println(" ---------------------------------- ");
+                System.out.println("Id race : "+ races.get(i).getId());
+                System.out.println("Location : "+ races.get(i).getLocalidad());
+                freeRaces = true;
             }
         }
+        return freeRaces;
     }
 
 
@@ -107,90 +115,118 @@ public class AthleteController {
 
         Scanner sc = new Scanner(System.in);
         if (athletes.size() == 0) {
-            System.out.println("Aun no hay ningun atleta");
+            System.out.println("There are not athletes created yet");
         } else {
-            System.out.println("Introduce el nif del atleta que deseas modificar ");
+            showAthletes();
+            System.out.println("Enter the NIF of the athlete you want to modify : ");
             String nifModify = sc.nextLine();
 
             if (validationDNI(nifModify)) {
-                boolean salirModidy = false;
+                boolean exitModify = false;
                 do {
                     // guardamos la posicion de donde se encuentra el array en otro objeto , y verificamos si el atleta que ingreso coincide con otro
                     Athlete athToMod = getAthleteByNif(nifModify);
                     if (athToMod != null) {
-                        System.out.println("Que atributo del atleta quieres modificar : " + athToMod.getNif());
-                        System.out.println(" Modify nombre [1]");
-                        System.out.println(" Modify edad [2]");
-                        System.out.println(" Modify genero [3]");
-                        System.out.println(" Exit  menu [4]");
-                        int opcionAtributo = sc.nextInt();
+                        System.out.println("What attribute of the athlete do you want to modify : " + athToMod.getNif());
+                        System.out.println(" Modify Name [1]");
+                        System.out.println(" Modify Age [2]");
+                        System.out.println(" Modify Gender [3]");
+                        System.out.println(" Modify Races [4]");
+                        System.out.println(" Exit  Menu [0]");
+                        int optionAttribute = sc.nextInt();
 
-                        switch (opcionAtributo) {
+                        switch (optionAttribute) {
                             case 1:
-                                System.out.println("El nombre del Atleta es : " + athToMod.getName());
-                                System.out.println("Introduce el nuevo nombre :  ");
+                                System.out.println("The name of the athlete is :" + athToMod.getName());
+                                System.out.println("Enter the new name: ");
                                 sc.nextLine();
                                 athToMod.setName(sc.nextLine());
                                 break;
                             case 2:
-                                System.out.println("La edad del atleta es : " + athToMod.getAge());
+                                System.out.println("The age of athlete is : " + athToMod.getAge());
                                 do {
-                                    System.out.println("Introduce la nueva edad : ");
+                                    System.out.println("Enter the new age: ");
                                     athToMod.setAge(sc.nextInt());
                                 } while (athToMod.getAge() < 1);
 
                                 break;
                             case 3:
                                 if(athToMod.getGender() != null){
-                                    System.out.println("El genero del atleta es : " + athToMod.getGender());
+                                    System.out.println("The gender of the athlete is : " + athToMod.getGender());
                                     sc.nextLine();
                                     do {
-                                        System.out.println("Introduce el nuevo genero :  ");
+                                        System.out.println("Enter the new gender:  ");
                                         athToMod.setGender(sc.nextLine());
                                     } while (!athToMod.getGender().equals("M") && !athToMod.getGender().equals("F"));
                                 }
                                 break;
                             case 4:
-                                System.out.println("Saliste");
-                                salirModidy = true;
+                                sc.nextLine();
+                                boolean exitModRace = false;
+                                do{
+                                    if(showRacesNotRegister(athToMod)){
+                                        String codeRace;
+                                        do{
+                                            System.out.println("Enter the code race to save:");
+                                            codeRace = sc.nextLine();
+                                        }while (!validationID(codeRace));
+                                        if(RaceController.raceIdRepeat(codeRace)){
+                                            Race race = getRaceById(codeRace);
+                                            if(race.getParticipantes().contains(athToMod)){
+                                                System.out.println("this athlete is already included in this race");
+                                            }else{
+                                                athToMod.getAthletesRace().add(race);
+                                                race.getParticipantes().add(athToMod);
+                                                System.out.println("registered race");
+                                                exitModRace = true;
+                                                }
+                                        }else{
+                                                System.out.println("This race doesnt exit!");
+                                        }
+                                    }else{
+                                        System.out.println(" ");
+                                        System.out.println("No races");
+                                        exitModRace =true;
+                                    }
+                                }while (!exitModRace);
+                                break;
+                            case 0:
+                                System.out.println("Go out");
+                                exitModify = true;
                                 break;
                             default:
-                                System.out.println("opcion incorrecta");
+                                System.out.println("Incorrect option");
 
                         }
-                        System.out.println("Atributo Modificado!");
                     } else {
-                        System.out.println("no hay nada aun!");
-                        salirModidy = true;
+                        System.out.println("There is nothing yet");
+                        exitModify = true;
                     }
 
-                } while (!salirModidy);
+                } while (!exitModify);
             } else {
-                System.out.println("el nif introducido es incorrecto");
+                System.out.println("The NIF entered is incorrect");
             }
         }
     }
-}
-/*
+
     public static void deleteAthlete() {
         Scanner sc = new Scanner(System.in);
 
         //comprobamos que el array se haya iniciado y que el array no este vacio
-        if (athletes == null || isEmpty(athletes) == true) {
-            System.out.println("Aun no existen atletas que eliminar");
+        if (athletes.size() == 0) {
+            System.out.println("There are no athletes to eliminate yet");
         } else {
-            System.out.println("Empecemos con la eliminacion del atleta");
-            System.out.println("Introduce el Nif :");
+            System.out.println("Let's start with the elimination of the athlete");
+            System.out.println("Enter the NIF:");
             String nifDelete = sc.nextLine();
             if (validationDNI(nifDelete)) {
                 if (repeatNIF(nifDelete)) {
                     // guardamos la posicion del array
                     Athlete saNif = getAthleteByNif(nifDelete);
-                    // guardamos el indice de su posicion , para seleccionar sus atributos
-                    int atletaIndex = getIndexByAthleteNif(saNif.getNif());
-                    if (atletaIndex != -1) {
-                        athletes[atletaIndex] = null;
-                        System.out.println("eliminado");
+                    athletes.remove(saNif);
+                    for(Race race : races){
+                        if (race.getParticipantes().get().getAthletesRace())
                     }
                 }else {
                     System.out.println("no existe el atleta con ese nif");
@@ -199,6 +235,9 @@ public class AthleteController {
                 System.out.println("El dni introducido es incorrecto");
             }
         }
-    }*/
+    }
+}
+
+
 
 

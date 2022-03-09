@@ -3,8 +3,6 @@ package Modulo2.Controller;
 import Modulo2.Model.Athlete;
 import Modulo2.Model.Race;
 import Modulo2.MyLibrary.Arrays;
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ import static Modulo2.MyLibrary.Arrays.getAthleteByNif;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class RaceController {
-    private static ArrayList<Race> races = new ArrayList<>();
+    public static ArrayList<Race> races = new ArrayList<>();
 
     public static boolean raceIdRepeat(String id){
         boolean isRepeat = false;
@@ -33,7 +31,7 @@ public class RaceController {
             // si hay algun atleta disponible , devuelve true
                 if(!race.getParticipantes().contains(athletes.get(i))){
                     System.out.println("Athlete : "+ athletes.get(i).getName());
-                    System.out.println(" WITH ID : "+ athletes.get(i).getNif());
+                    System.out.println(" With ID : "+ athletes.get(i).getNif());
                     freeAtletes = true;
                 }
         }
@@ -55,64 +53,61 @@ public class RaceController {
     public static void registerRace(){
         Scanner sc = new Scanner(System.in);
         String id;
-        String localidad;
-        int kilometros;
+        String location;
+        int kilometres;
 
         do{
-            System.out.println("Introduce el codigo de carrera : ");
+            System.out.println("Enter the codeRace :  ");
             id = sc.nextLine();
         }while (!validationID(id));
 
         if(raceIdRepeat(id) == false){
-            System.out.println("Introduce una localidad : ");
-            localidad = sc.nextLine();
+            System.out.println("Enter the location : ");
+            location = sc.nextLine();
 
             do{
-                System.out.println("Introduce la distancia (KM)");
-                kilometros = sc.nextInt();
-            }while (kilometros < 0);
+                System.out.println("Enter the distance (KM):");
+                kilometres = sc.nextInt();
+            }while (kilometres < 0);
 
             // registrar carrera
-            races.add(new Race(id, localidad ,kilometros));
+            races.add(new Race(id, location ,kilometres));
             // get.size()-1 -..
             Race registeringRace = getRaceById(id);
-            System.out.println("Carrera creada!!");
+            System.out.println("Career created!!");
 
             char option;
             sc.nextLine();
             do {
-                System.out.println("¿Quiere Añadir atletas a la carrera??(N/Y)");
+                System.out.println("Do you want to add athletes to the race ?(N/Y)");
                 option = sc.nextLine().charAt(0);
 
                 if(option == 'N'){
                 }else if(option == 'Y'){
-                    System.out.println("YES");
                     boolean exit= false;
                     do{
                         // revisar todos los atletas
-                        System.out.println("bucle");
                         if(showAthletesNotRegister(registeringRace)){
                             System.out.println("These athletes have not been registered yet");
                             String idAthlete;
                             do {
-                                System.out.println("Enter the athlete Dni : ");
+                                System.out.println("Enter the athlete Nif : ");
                                 idAthlete = sc.nextLine();
                             }while (!validationDNI(idAthlete));
                             if(repeatNIF(idAthlete) == true){
-                                System.out.println("repeat");
                                 // revisa el atleta especifica si esta ne la carrera
                                 if(registeringRace.getParticipantes().contains(getAthleteByNif(idAthlete))){
-                                    System.out.println("El atleta ya esta registrado en la carrera");
+                                    System.out.println("The athlete is already registered in the race");
                                 }else{
                                     registeringRace.getParticipantes().add(getAthleteByNif(idAthlete));
                                     Arrays.getAthleteByNif(idAthlete).getAthletesRace().add(registeringRace);
                                 }
 
                             }else{
-                                System.out.println("El atleta no existe");
+                                System.out.println("The athlete does not exist");
                             }
 
-                            System.out.println("Quieres añadir otra atleta ?? [Y][N]");
+                            System.out.println("Do you want to add another athlete?? [Y][N]");
                             option = sc.nextLine().charAt(0);
 
                             if(option == 'Y'){
@@ -121,53 +116,53 @@ public class RaceController {
                                 System.out.println("bye");
                                 exit = true;
                             }else{
-                                System.out.println("opcion incorrecta ,asumimos que no quieres añadir mas atletas");
+                                System.out.println("wrong option, we assume you don't want to add another athlete");
                             }
 
                         }else{
-                            System.out.println("No hay atletas disponibles parta una carrera");
+                            System.out.println("There are no athletes available for a race");
                             exit = true;
                         }
                     }while (!exit);
                 }else{
-                    System.out.println("opcion incorrecta , es Y o N");
+                    System.out.println("Wrong option , is Y o N");
                 }
             } while (option != 'Y' && option != 'N');
 
         }else{
-            System.out.println("Esta carrera ya fue registrada");
+            System.out.println("This race was registered");
         }
     }
 
     public static void showRaces(){
         if (races.size() == 0) {
-            System.out.println("Aun no hay carreras creadas");
+            System.out.println("there are no athletes created yet");
         } else {
             for(int i = 0; i < races.size(); i++){
                 System.out.println("---------------------------------------------------");
                 System.out.println("ID :" + races.get(i).getId());
-                System.out.println("Localidad :" + races.get(i).getLocalidad());
-                System.out.println("Kilometros : "+ races.get(i).getKilometros());
+                System.out.println("location :" + races.get(i).getLocalidad());
+                System.out.println("kilometres : "+ races.get(i).getKilometros());
                 System.out.println("Time register : "+ races.get(i).getFechaHoraRegistro());
-                System.out.println("Atletas participantes en la carrera :");
+                System.out.println("Athletes participing in the race :");
 
                 if(races.get(i).getParticipantes().size() > 0){
                     for(int j = 0; j < races.get(i).getParticipantes().size() ; j++){
                         Athlete participante = races.get(i).getParticipantes().get(j);
 
-                        System.out.println(" Dni:" + participante.getNif());
-                        System.out.println("Nombre :" + participante.getName());
-                        System.out.println("Edad : "+ participante.getAge());
+                        System.out.println("Nif:" + participante.getNif());
+                        System.out.println("Name :" + participante.getName());
+                        System.out.println("Age : "+ participante.getAge());
                         if(participante.getGender() != null){
-                            System.out.println("Genero: "+ participante.getGender());
+                            System.out.println("Gender : "+ participante.getGender());
                         }
                         if(participante.isSenior()){
-                            System.out.println("Es mayor de Edad ");
+                            System.out.println("He's old");
                         }
                         System.out.println(" ");
                     }
                 }else{
-                    System.out.println("Aun no hay atletas añadidos a la carrera");
+                    System.out.println("There are no athletes added to the race yet");
                 }
             }
         }
