@@ -167,4 +167,35 @@ public class RaceController {
             }
         }
     }
+
+    public static void deletedRaces(){
+        Scanner sc = new Scanner(System.in);
+        if(races.size() == 0){
+            System.out.println("there are not races");
+        }else{
+            System.out.println("Let's start with the elimination of the races");
+            System.out.println("Enter the race to remove:");
+            String raceRemove = sc.nextLine();
+            if(validationID(raceRemove)){
+                if(raceIdRepeat(raceRemove)){
+                    Race objectRace = getRaceById(raceRemove);
+                    races.remove(objectRace);
+                    if(objectRace.getParticipantes().size() > 0){
+                        for (Athlete atleta : athletes){
+                            if(atleta.getAthletesRace().contains(objectRace)){
+                                atleta.getAthletesRace().remove(objectRace);
+                            }
+                        }
+                    }else{
+                        System.out.println("there are not participes");
+                    }
+                }else{
+                    System.out.println("the race doesnt exists¡¡");
+                }
+            }else{
+                System.out.println("the code race have invalidated caractheres");
+            }
+
+        }
+    }
 }

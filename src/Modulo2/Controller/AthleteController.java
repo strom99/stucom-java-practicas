@@ -225,9 +225,16 @@ public class AthleteController {
                     // guardamos la posicion del array
                     Athlete saNif = getAthleteByNif(nifDelete);
                     athletes.remove(saNif);
-                    for(Race race : races){
-                        if (race.getParticipantes().get().getAthletesRace())
+                    if(saNif.getAthletesRace().size() > 0){
+                        for(Race race : races){
+                            if (race.getParticipantes().contains(saNif)){
+                                race.getParticipantes().remove(saNif);
+                            }
+                        }
+                    }else{
+                        System.out.println("there are not races registered");
                     }
+                    System.out.println("deleted athlete");
                 }else {
                     System.out.println("no existe el atleta con ese nif");
                 }

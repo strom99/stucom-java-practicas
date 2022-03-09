@@ -64,8 +64,7 @@ public class Inicio {
                     showRaces();
                     break;
                 case 7:
-                    System.out.println("Delete race");
-                    exitMenu = true;
+                    deletedRaces();
                     break;
                 case 0 :
                     System.out.println("Bye !!!");
