@@ -1,5 +1,6 @@
 package Modulo2.View;
 
+import Modulo2.Controller.FileController;
 import Modulo2.Model.Athlete;
 import Modulo2.Model.Race;
 
@@ -46,6 +47,7 @@ public class Inicio {
             numberMenu = sc.nextInt();
             switch(numberMenu){
                 case 1 :
+                    FileController.writeAthlete();
                     registerAthlete();
                     break;
                 case 2:

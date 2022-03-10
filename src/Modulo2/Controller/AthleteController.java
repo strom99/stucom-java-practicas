@@ -231,8 +231,6 @@ public class AthleteController {
                                 race.getParticipantes().remove(saNif);
                             }
                         }
-                    }else{
-                        System.out.println("there are not races registered");
                     }
                     System.out.println("deleted athlete");
                 }else {
