@@ -24,6 +24,7 @@ public class Inicio {
         System.out.println("[0] Exit");
     }
 
+    // athletas y carreras creadas por defecto
     public static void createAthletes(){
         getAthletes().add(new Athlete("33333333F", "PEDRO",43));
         getAthletes().add(new Athlete("33333333G", "LUCAS",23));
@@ -47,26 +48,35 @@ public class Inicio {
             numberMenu = sc.nextInt();
             switch(numberMenu){
                 case 1 :
-                    FileController.writeAthlete();
                     registerAthlete();
+                    FileController.writeAthlete();
+                    FileController.writeRace();
                     break;
                 case 2:
                     showAthletes();
                     break;
                 case 3:
                     modifyAthlete();
+                    FileController.writeAthlete();
+                    FileController.writeRace();
                     break;
                 case 4:
                     deleteAthlete();
+                    FileController.writeAthlete();
+                    FileController.writeRace();
                     break;
                 case 5:
                     registerRace();
+                    FileController.writeAthlete();
+                    FileController.writeRace();
                     break;
                 case 6 :
                     showRaces();
                     break;
                 case 7:
                     deletedRaces();
+                    FileController.writeAthlete();
+                    FileController.writeRace();
                     break;
                 case 0 :
                     System.out.println("Bye !!!");

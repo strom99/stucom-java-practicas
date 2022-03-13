@@ -7,23 +7,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Modulo2.Controller.AthleteController.athletes;
-import static Modulo2.MyLibrary.Arrays.getAthleteByNif;
+import static Modulo2.MyLibrary.Arrays.*;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class RaceController {
     public static ArrayList<Race> races = new ArrayList<>();
-
-    public static boolean raceIdRepeat(String id){
-        boolean isRepeat = false;
-        if(races.size() != 0){
-            for (int j = 0; j < races.size() && !isRepeat; j++) {
-                if (id.equalsIgnoreCase(races.get(j).getId())) {
-                    isRepeat = true;
-                }
-            }
-        }
-        return isRepeat;
-    }
 
     public static boolean showAthletesNotRegister(Race race){
         boolean freeAtletes = false;
@@ -36,18 +24,6 @@ public class RaceController {
                 }
         }
         return freeAtletes;
-    }
-
-    public static Race getRaceById (String id) {
-        Race registeringRace = null;
-        for (int i = 0; i < races.size(); i++) {
-            if (races.get(i).getId().equals(id)) {
-                registeringRace = races.get(i);
-                break;
-            }
-
-        }
-        return registeringRace;
     }
 
     public static void registerRace(){
@@ -180,14 +156,13 @@ public class RaceController {
                 if(raceIdRepeat(raceRemove)){
                     Race objectRace = getRaceById(raceRemove);
                     races.remove(objectRace);
+                    System.out.println("race deleted");
                     if(objectRace.getParticipantes().size() > 0){
                         for (Athlete atleta : athletes){
                             if(atleta.getAthletesRace().contains(objectRace)){
                                 atleta.getAthletesRace().remove(objectRace);
                             }
                         }
-                    }else{
-                        System.out.println("there are not participes");
                     }
                 }else{
                     System.out.println("the race doesnt exists¡¡");

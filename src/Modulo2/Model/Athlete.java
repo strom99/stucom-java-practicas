@@ -22,9 +22,6 @@ public class Athlete {
     }
 
     public Athlete(String nif, String name, int age, String gender) {
-        //this.name = name;
-        //this.nif = nif;
-        //this.age = age;
         this(nif,name,age);
         this.gender = gender;
     }

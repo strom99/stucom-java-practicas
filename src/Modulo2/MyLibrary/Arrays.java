@@ -1,37 +1,13 @@
 package Modulo2.MyLibrary;
 
 import Modulo2.Model.Athlete;
+import Modulo2.Model.Race;
 
 import static Modulo2.Controller.AthleteController.athletes;
+import static Modulo2.Controller.RaceController.races;
 
 public class Arrays {
-    /*
-    public static boolean isFull (Object array []) {
-        int contador = 0;
-        boolean hayEspacio = false;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                hayEspacio = true;
-            }
-        }
-        return hayEspacio;
-    }*/
 
-    // recorre el array e inicia un contador para ver si el array esta vacio
-    /*public static boolean isEmpty (Athlete [] athletes) {
-        int contador = 0;
-        boolean hayEspacio = false;
-        for (int i = 0; i < athletes.length; i++) {
-            if (athletes[i] == null) {
-                contador++;
-            }
-        }
-
-        if(contador == athletes.length){
-            hayEspacio = true;
-        }
-        return hayEspacio;
-    }*/
     public static int  firstFreePosition (Object array []) {
         boolean full = true;
         int position = -1;
@@ -56,18 +32,28 @@ public class Arrays {
         }
         return athlete;
     }
-
-    // busca el indice del array y compara el nif
-    /*
-    public static int getIndexByAthleteNif(String nif) {
-        int index = -1;
-        for (int i = 0; i < athletes.size(); i++) {
-            if (athletes[i] != null && athletes[i].getNif().equals(nif)) {
-                index = i;
+    public static Race getRaceById (String id) {
+        Race registeringRace = null;
+        for (int i = 0; i < races.size(); i++) {
+            if (races.get(i).getId().equals(id)) {
+                registeringRace = races.get(i);
                 break;
             }
+
         }
-        return index;
-    }*/
+        return registeringRace;
+    }
+
+    public static boolean raceIdRepeat(String id){
+        boolean isRepeat = false;
+        if(races.size() != 0){
+            for (int j = 0; j < races.size() && !isRepeat; j++) {
+                if (id.equalsIgnoreCase(races.get(j).getId())) {
+                    isRepeat = true;
+                }
+            }
+        }
+        return isRepeat;
+    }
 
 }

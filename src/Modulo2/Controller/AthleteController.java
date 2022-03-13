@@ -2,13 +2,14 @@ package Modulo2.Controller;
 
 import Modulo2.Model.Athlete;
 import Modulo2.Model.Race;
+import Modulo2.MyLibrary.Arrays;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Modulo2.Controller.RaceController.getRaceById;
 import static Modulo2.Controller.RaceController.races;
 import static Modulo2.MyLibrary.Arrays.getAthleteByNif;
+import static Modulo2.MyLibrary.Arrays.getRaceById;
 import static Modulo2.MyLibrary.DataValidation.*;
 
 public class AthleteController {
@@ -22,8 +23,8 @@ public class AthleteController {
 
     public static void registerAthlete() {
         Scanner sc = new Scanner(System.in);
-
         String nif;
+
         do {
             System.out.println("Enter the Nif: ");
             nif = sc.nextLine();
@@ -54,7 +55,6 @@ public class AthleteController {
                     gender = sc.nextLine();
                 } while (!gender.equals("M") && !gender.equals("F"));
 
-                System.out.println("error");
                 athletes.add(new Athlete(nif ,name, age, gender));
                 System.out.println("Atleta creado!!");
             } else if (option == 'N') {
@@ -170,7 +170,7 @@ public class AthleteController {
                                             System.out.println("Enter the code race to save:");
                                             codeRace = sc.nextLine();
                                         }while (!validationID(codeRace));
-                                        if(RaceController.raceIdRepeat(codeRace)){
+                                        if(Arrays.raceIdRepeat(codeRace)){
                                             Race race = getRaceById(codeRace);
                                             //SELECCIONO EL ARRAY PARTICIPANTES PARA REVISAR SI CONTIENE A MI ATLETA
                                             if(race.getParticipantes().contains(athToMod)){
