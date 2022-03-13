@@ -172,6 +172,7 @@ public class AthleteController {
                                         }while (!validationID(codeRace));
                                         if(RaceController.raceIdRepeat(codeRace)){
                                             Race race = getRaceById(codeRace);
+                                            //SELECCIONO EL ARRAY PARTICIPANTES PARA REVISAR SI CONTIENE A MI ATLETA
                                             if(race.getParticipantes().contains(athToMod)){
                                                 System.out.println("this athlete is already included in this race");
                                             }else{
@@ -185,7 +186,7 @@ public class AthleteController {
                                         }
                                     }else{
                                         System.out.println(" ");
-                                        System.out.println("No races");
+                                        System.out.println("No MORE races");
                                         exitModRace =true;
                                     }
                                 }while (!exitModRace);
@@ -212,7 +213,6 @@ public class AthleteController {
 
     public static void deleteAthlete() {
         Scanner sc = new Scanner(System.in);
-
         //comprobamos que el array se haya iniciado y que el array no este vacio
         if (athletes.size() == 0) {
             System.out.println("There are no athletes to eliminate yet");
@@ -237,7 +237,7 @@ public class AthleteController {
                     System.out.println("no existe el atleta con ese nif");
                 }
             } else {
-                System.out.println("El dni introducido es incorrecto");
+                System.out.println("El NIF introducido es incorrecto");
             }
         }
     }
