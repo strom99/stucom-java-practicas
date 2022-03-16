@@ -35,5 +35,10 @@ public class Empleado extends Persona {
     }
 
     // protected -> puedo llamar desde la clase hijo el valor de un padre , por ser hrencia sin getter
+    // @override sobreescribe el metoo que ya existe en el objeto padre
+    // el super to string te muestra la direccion
 
+    public String toString(){
+        return "nombre" + nombre + "edad" + edad + "idEmpleado "+ idEmpleado + "sueldo"+ sueldo + super.toString();
+    }
 }

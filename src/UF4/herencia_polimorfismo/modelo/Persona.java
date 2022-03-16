@@ -53,9 +53,5 @@ public class Persona extends Object {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    // @override sobreescribe el metoo que ya existe en el objeto padre
-    // el super to string te muestra la direccion
-    public String toString(){
-        return "nombre" + nombre + "edad" + edad + "idEmpleado "+ idEmpleado + "sueldo"+ sueldo + super.toString();
-    }
+
 }
