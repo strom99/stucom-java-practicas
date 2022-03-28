@@ -3,9 +3,9 @@ package UF4.herencia_polimorfismo.modelo;
 import java.util.Date;
 
 public class Cliente extends Persona{
-    int idCliente;
-    Date fechaRegistro;
-    boolean vip;
+    protected  int idCliente;
+    protected Date fechaRegistro;
+    protected  boolean vip;
 
     public Cliente(String nombre , String  direccion , char genero , int edad , int idCliente,boolean vip){
         super(nombre,direccion,genero,edad);
@@ -31,5 +31,14 @@ public class Cliente extends Persona{
 
     public void setVip(boolean vip) {
         this.vip = vip;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idCliente=" + idCliente +
+                ", fechaRegistro=" + fechaRegistro +
+                ", vip=" + vip +
+                '}';
     }
 }

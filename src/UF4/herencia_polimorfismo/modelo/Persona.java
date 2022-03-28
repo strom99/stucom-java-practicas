@@ -54,4 +54,20 @@ public class Persona extends Object {
         this.edad = edad;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", genero=" + genero +
+                ", edad=" + edad + super.toString() +
+                '}';
+    }
+// super.toString te trae las cosas  heredadas de un padre
+    /*public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("persona{nombre : ").append(nombre);
+        return sb.toString();
+    }*/
+
 }
