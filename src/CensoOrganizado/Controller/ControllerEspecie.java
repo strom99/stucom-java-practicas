@@ -8,6 +8,5 @@ import java.util.ArrayList;
 public class ControllerEspecie {
 
     ArrayList<Especies> poblacion =new ArrayList<>();
-    Planetas urano = new Planetas("urano","frio");
 
 }

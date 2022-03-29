@@ -51,4 +51,39 @@ public class clase {
             System.out.println(test.getNombre() + " No puede vivir en el planeta "+tierra.getNombre());
         }
     }*/
+    /* -------------- planetas equals
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        final Planeta other = (Planeta) obj;
+
+        return this.getNombre().equalsIgnoreCase(other.getNombre());
+    }
+    ------------------------------------------
+    public static void main(String[] args) {
+        // Crear una nueva instancia de la clase Planeta
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingresa nombre del planeta");
+        String nombre = scanner.nextLine();
+
+        Planeta tierra2 = new Planeta(nombre);
+        planetas.add(new Planeta("tierra"));
+
+        if (existePlaneta(tierra2)) {
+            System.out.println("El planeta " + nombre + " existe");
+        } else {
+            System.out.println("El planeta " + nombre + " no existe");
+            planetas.add(tierra2);
+        }
+
+        System.out.println(planetas.toString());
+
+    }
+     */
 }
