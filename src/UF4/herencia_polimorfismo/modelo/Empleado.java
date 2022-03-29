@@ -42,8 +42,13 @@ public class Empleado extends Persona {
     // @override sobreescribe el metodo que ya existe en el objeto padre , lo sobreescribe en el hijo , pero con un bloque diferente
     // el super to string te muestra la direccion
 
-    public String toString(){
-        return "nombre: " + nombre + " edad: " + edad + " idEmpleado:  "+ idEmpleado + " sueldo: "+ sueldo + "  "+ super.toString();
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", genero=" + genero +
+                ", edad=" + edad +
+                ", idEmpleado= "+ idEmpleado;
     }
 
     // sobreescribe el método equals para comparar diferentes valores y no el objeto completo (Todas las propiedades iguales)

@@ -15,6 +15,7 @@ public class main {
         Moto mot1 = new Moto(2,"3232","rec","azul");
         System.out.println(mot1);
         System.out.println(mot1.calcularAlquiler(5));
+        Vehiculo moto = new Moto(2332,"323","re","rosa");
     }
 
 }

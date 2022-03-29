@@ -60,8 +60,7 @@ public class Persona extends Object {
                 "nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", genero=" + genero +
-                ", edad=" + edad + super.toString() +
-                '}';
+                ", edad=" + edad;
     }
 // super.toString te trae las cosas  heredadas de un padre
     /*public String toString(){

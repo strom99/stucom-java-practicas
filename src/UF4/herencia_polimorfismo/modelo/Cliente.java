@@ -33,12 +33,14 @@ public class Cliente extends Persona{
         this.vip = vip;
     }
 
-    @Override
     public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", fechaRegistro=" + fechaRegistro +
-                ", vip=" + vip +
-                '}';
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", genero=" + genero +
+                ", edad=" + edad +
+                ", idCliente= "+ idCliente +
+                ", fecha registro= "+ fechaRegistro +
+                ", vip = "+ vip;
     }
 }

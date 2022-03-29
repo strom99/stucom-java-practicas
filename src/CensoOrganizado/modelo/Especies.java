@@ -1,11 +1,12 @@
 package CensoOrganizado.modelo;
 
-public class Especie {
+public class Especies {
 
     private String nombre;
     public int nivelCivilizacion;
+    // agregacion planeta
 
-    public Especie (String nombre, int nivelCivilizacion) {
+    public Especies(String nombre, int nivelCivilizacion) {
         this.nombre = nombre;
         this.nivelCivilizacion = nivelCivilizacion;
     }
