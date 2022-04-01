@@ -1,24 +1,22 @@
 package CensoOrganizado.modelo;
 
-import UF4.herencia_polimorfismo.modelo.Empleado;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Planetas {
+public class Planeta {
 
     private String nombre;
     private String galaxia;
-    public List<Especies> poblacion = new ArrayList<>();
+    public List<Especie> poblacion = new ArrayList<>();
     private String clima;
     private boolean flora_roja;
     private boolean seres_acuaticos;
 
-    public Planetas(){
+    public Planeta(String nombre){
+        this.nombre = nombre;
     }
 
-    public Planetas(String nombre, String galaxia, String clima, boolean flora_roja, boolean seres_acuaticos) {
+    public Planeta(String nombre, String galaxia, String clima, boolean flora_roja, boolean seres_acuaticos) {
         this.nombre = nombre;
         this.galaxia=galaxia;
         this.clima = clima;
@@ -43,11 +41,11 @@ public class Planetas {
         this.galaxia = galaxia;
     }
 
-    public List<Especies> getPoblacion() {
+    public List<Especie> getPoblacion() {
         return poblacion;
     }
 
-    public void setPoblacion(List<Especies> poblacion) {
+    public void setPoblacion(List<Especie> poblacion) {
         this.poblacion = poblacion;
     }
 
@@ -76,16 +74,27 @@ public class Planetas {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            System.out.println("diferentes especies");
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Planetas planetas = (Planetas) o;
-        return nombre.equalsIgnoreCase(planetas.nombre);
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        final Planeta other = (Planeta) obj;
+
+        return this.getNombre().equalsIgnoreCase(other.getNombre());
     }
 
+    @Override
+    public String toString() {
+        return "Planeta{" +
+                "nombre='" + nombre + '\'' +
+                ", galaxia='" + galaxia + '\'' +
+                ", poblacion=" + poblacion +
+                ", clima='" + clima + '\'' +
+                ", flora_roja=" + flora_roja +
+                ", seres_acuaticos=" + seres_acuaticos +
+                '}';
+    }
 }

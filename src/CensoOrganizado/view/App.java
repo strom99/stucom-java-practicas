@@ -1,10 +1,11 @@
 package CensoOrganizado.view;
 
-import CensoOrganizado.modelo.Especies;
-import CensoOrganizado.modelo.Planetas;
+import CensoOrganizado.modelo.Especie;
+import CensoOrganizado.modelo.Planeta;
 
 import java.util.Scanner;
 
+import static CensoOrganizado.Controller.ControllerEspecie.*;
 import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
@@ -12,34 +13,37 @@ public class App {
         Scanner sc = new Scanner(System.in);
         int numero;
         boolean salir = false;
-        Planetas pl = null;
-        Planetas pl1 = new Planetas("urano","fdfsf ","frio",true ,false);
-        Planetas pl2 = new Planetas("marte","fdfsf ","frio",true ,false);
-        Especies esp1 = new Especies(null, 1);
+        Planeta pl = null;
+        Planeta pl1 = new Planeta("urano","fdfsf ","frio",true ,false);
+        Planeta pl2 = new Planeta("marte","fdfsf ","frio",true ,false);
+        Especie esp1 = new Especie("coma", 1);
         //System.out.println(pl1.equals(pl2));
         planetas.add(pl1);
         planetas.add(pl2);
+        especies.add(esp1);
 
         do{
             menu();
             numero = sc.nextInt();
             switch (numero){
                 case 1 :
-                    System.out.println("registrar planeta");
                     crearPlaneta();
                     break;
                 case 2 :
-                    System.out.println("censar");
-                    salir = true;
-
+                    CensarSer();
                     break;
                 case 3:
                     System.out.println("borrar");
                     salir = true;
-
                     break;
                 case 4:
-                    verEspecies();
+                    verPlanetas();
+                    break;
+                case 5:
+                    verSeres();
+                    break;
+                case 6:
+                    verPoblacionPlanetas();
                     break;
                 case 0 :
                     System.out.println("adios");
@@ -56,6 +60,8 @@ public class App {
             System.out.println("Censar a un ser [2]");
             System.out.println("Borrar a un ser [3]");
             System.out.println("ver planetas [4]");
+            System.out.println("ver seres [5]");
+            System.out.println("ver poblacion de un planeta [6]");
             System.out.println("Salir [0]");
 
         }
