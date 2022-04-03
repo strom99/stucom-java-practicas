@@ -1,7 +1,6 @@
 package CensoOrganizado.view;
 
-import CensoOrganizado.modelo.Especie;
-import CensoOrganizado.modelo.Planeta;
+import CensoOrganizado.modelo.*;
 
 import java.util.Scanner;
 
@@ -13,14 +12,14 @@ public class App {
         Scanner sc = new Scanner(System.in);
         int numero;
         boolean salir = false;
-        Planeta pl = null;
-        Planeta pl1 = new Planeta("urano","fdfsf ","frio",true ,false);
-        Planeta pl2 = new Planeta("marte","fdfsf ","frio",true ,false);
+        //Planeta pl1 = new Planeta("urano","fdfsf ","frio",true ,false);
+        //Planeta pl2 = new Planeta("marte","fdfsf ","frio",true ,false);
         Especie esp1 = new Especie("coma", 1);
+        Humano humano = new Humano("luis", 32, 'M');
+        Vulcaniano vulcaniano = new Vulcaniano("melon",4);
+        Andoriano n = new Andoriano("martin","Luchador",true);
+        //Planeta pl3 = new Planeta("pluton","andromeda","Calido",false,true);
         //System.out.println(pl1.equals(pl2));
-        planetas.add(pl1);
-        planetas.add(pl2);
-        especies.add(esp1);
 
         do{
             menu();

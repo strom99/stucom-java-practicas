@@ -134,9 +134,12 @@ public class ControllerPlanet {
         planeta = getPlanetByName(sc.nextLine());
         if(planeta != null){
             System.out.println("poblacion del planeta "+planeta.getNombre());
-            for (int i = 0; i < planeta.getPoblacion().size(); i++){
-                System.out.println(planeta.getPoblacion().get(i));
-            }
+            if(!planeta.getPoblacion().isEmpty()){
+                for (int i = 0; i < planeta.getPoblacion().size(); i++){
+                    System.out.println(planeta.getPoblacion().get(i));
+                }
+            }else
+                System.out.println("el planeta no dispone de habitantes");
         }else{
             System.out.println("ese planeta no es correcto");
         }
