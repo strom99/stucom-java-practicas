@@ -21,7 +21,7 @@ public class ControllerPlanet {
         return planeta;
     }
 
-    public static boolean verificarNombre(Planeta planeta){
+    public static boolean verificarPlaneta(Planeta planeta){
         boolean existe = false;
         if (!planetas.isEmpty()) {
             for(int i = 0 ; i < planetas.size(); i++){
@@ -77,11 +77,10 @@ public class ControllerPlanet {
             System.out.println("Introduce el nombre del planeta: ");
             nombre = sc.nextLine();
             planeta = new Planeta(nombre);
-            if(verificarNombre(planeta)){
+            if(verificarPlaneta(planeta)){
                 System.out.println("Ya existe ese nombre");
             } else {
                 salir = true;
-                System.out.println("planeta creado");
             }
         }while(!salir);
 

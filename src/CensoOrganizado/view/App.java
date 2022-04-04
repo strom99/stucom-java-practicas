@@ -8,19 +8,18 @@ import static CensoOrganizado.Controller.ControllerEspecie.*;
 import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
+    public static void crearPlanetas(){
+        planetas.add(new Planeta("marte", "andromeda", "Frio",true,false));
+        planetas.add(new Planeta("pluton", "filomena", "Calido",true,true));
+        planetas.add(new Planeta("urano", "filomena", "Calido",false,false));
+        planetas.add(new Planeta("neptuno", "filomena", "Calido",false,true));
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int numero;
         boolean salir = false;
-        //Planeta pl1 = new Planeta("urano","fdfsf ","frio",true ,false);
-        //Planeta pl2 = new Planeta("marte","fdfsf ","frio",true ,false);
-        Especie esp1 = new Especie("coma", 1);
-        Humano humano = new Humano("luis", 32, 'M');
-        Vulcaniano vulcaniano = new Vulcaniano("melon",4);
-        Andoriano n = new Andoriano("martin","Luchador",true);
-        //Planeta pl3 = new Planeta("pluton","andromeda","Calido",false,true);
-        //System.out.println(pl1.equals(pl2));
-
+        crearPlanetas();
         do{
             menu();
             numero = sc.nextInt();
@@ -32,8 +31,7 @@ public class App {
                     CensarSer();
                     break;
                 case 3:
-                    System.out.println("borrar");
-                    salir = true;
+                    eliminarSer();
                     break;
                 case 4:
                     verPlanetas();
