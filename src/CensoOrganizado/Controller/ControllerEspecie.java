@@ -152,6 +152,7 @@ public class ControllerEspecie {
                 System.out.println("0");
                 salir = true;
             } else {
+                //  muestro planetas habitables
                 for (Planeta planetasH: planetasHabitables) {
                     System.out.println(planetasH);
                 }
