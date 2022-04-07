@@ -18,7 +18,7 @@ public class ControllerEspecie {
         boolean existe = false;
         if (!especies.isEmpty()) {
             for (int i = 0; i < especies.size(); i++) {
-                if (especies.get(i).equals(especie)) {
+                if (especies.get(i).getNombre().equals(especie.getNombre())) {
                     existe = true;
                 }
             }
@@ -90,15 +90,9 @@ public class ControllerEspecie {
         do {
             System.out.println("Introduce el nombre del ser: ");
             nombre = sc.nextLine();
-
-            /*
-            if(!especies.contains(new Especies(nombre))){
-
-            }*/
-            andoriano = new Andoriano(nombre);
-            if (verificarNombreE(andoriano)) {
+            if(especies.contains(new Especie(nombre))){
                 System.out.println("Ya existe ese nombre");
-            } else {
+            }else{
                 salirNombre = true;
             }
         } while (!salirNombre);
@@ -169,7 +163,7 @@ public class ControllerEspecie {
                 nombrePl = sc.nextLine();
                 // comprobacion de si el planeta existe
                 Planeta planeta = getPlanetByName(nombrePl);
-                if (verificarPlaneta(planeta)) {
+                if (verificarPlaneta(new Planeta(nombrePl))) {
                     // añade al ser en la poblacion de ese planeta
                     planeta.getPoblacion().add(especie);
                     System.out.println("Censo correcto");

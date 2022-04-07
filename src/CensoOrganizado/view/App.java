@@ -13,7 +13,7 @@ public class App {
         planetas.add(new Planeta("pluton", "filomena", "Calido",true,true));
         planetas.add(new Planeta("urano", "filomena", "Calido",false,false));
         planetas.add(new Planeta("neptuno", "filomena", "Calido",false,true));
-        //especies.add(new Ferengiano("luis",3));
+        especies.add(new Ferengiano("luis",3));
     }
 
     public static void main(String[] args) {
