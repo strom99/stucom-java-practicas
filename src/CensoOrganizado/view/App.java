@@ -13,6 +13,7 @@ public class App {
         planetas.add(new Planeta("pluton", "filomena", "Calido",true,true));
         planetas.add(new Planeta("urano", "filomena", "Calido",false,false));
         planetas.add(new Planeta("neptuno", "filomena", "Calido",false,true));
+        //especies.add(new Ferengiano("luis",3));
     }
 
     public static void main(String[] args) {
@@ -34,13 +35,16 @@ public class App {
                     eliminarSer();
                     break;
                 case 4:
-                    verPlanetas();
+                    verPoblacionPlanetas();
                     break;
                 case 5:
-                    verSeres();
+                    modificarPropiedadEspecie();
                     break;
                 case 6:
-                    verPoblacionPlanetas();
+                    verPlanetas();
+                    break;
+                case 7:
+                    verSeres();
                     break;
                 case 0 :
                     System.out.println("adios");
@@ -56,9 +60,10 @@ public class App {
             System.out.println("Registrar planeta [1]");
             System.out.println("Censar a un ser [2]");
             System.out.println("Borrar a un ser [3]");
-            System.out.println("ver planetas [4]");
-            System.out.println("ver seres [5]");
-            System.out.println("ver poblacion de un planeta [6]");
+            System.out.println("ver poblacion de un planeta [4]");
+            System.out.println("Modificar la propiedad de un ser [5]");
+            System.out.println("ver planetas [6]");
+            System.out.println("ver seres [7]");
             System.out.println("Salir [0]");
 
         }

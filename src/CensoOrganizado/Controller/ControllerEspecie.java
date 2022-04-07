@@ -22,6 +22,8 @@ public class ControllerEspecie {
                     existe = true;
                 }
             }
+        }else {
+            System.out.println("No existen seres aun");
         }
         return existe;
     }
@@ -88,6 +90,11 @@ public class ControllerEspecie {
         do {
             System.out.println("Introduce el nombre del ser: ");
             nombre = sc.nextLine();
+
+            /*
+            if(!especies.contains(new Especies(nombre))){
+
+            }*/
             andoriano = new Andoriano(nombre);
             if (verificarNombreE(andoriano)) {
                 System.out.println("Ya existe ese nombre");
@@ -140,6 +147,7 @@ public class ControllerEspecie {
         ingresoPlaneta(nombre);
     }
 
+    // ingresar al ser en un planeta (#1)
     public static void ingresoPlaneta(String nombre) {
         Scanner sc = new Scanner(System.in);
         Especie especie = getRaceByName(nombre);
@@ -147,19 +155,22 @@ public class ControllerEspecie {
         boolean salir = false;
         do {
             System.out.println("Planetas habitables:");
+            // creamos un array para mostrar los planetas que salen del metodo obtenerPlanetasHabitables() , que devuelve un array;
             List<Planeta> planetasHabitables = obtenerPlanetasHabitables(especie);
             if (planetasHabitables.isEmpty()) {
                 System.out.println("0");
                 salir = true;
             } else {
-                //  muestro planetas habitables
+                //  muestro planetas habitables del array planetasHabitables
                 for (Planeta planetasH: planetasHabitables) {
                     System.out.println(planetasH);
                 }
                 System.out.println("Selecciona el planeta en el que quieres vivir?");
                 nombrePl = sc.nextLine();
+                // comprobacion de si el planeta existe
                 Planeta planeta = getPlanetByName(nombrePl);
                 if (verificarPlaneta(planeta)) {
+                    // añade al ser en la poblacion de ese planeta
                     planeta.getPoblacion().add(especie);
                     System.out.println("Censo correcto");
                     salir =true;
@@ -170,6 +181,35 @@ public class ControllerEspecie {
         } while (!salir);
     }
 
+    // comprobacion poblacion para cierto habitaante (#2), devuelve lista de planetas en un array
+    public static List<Planeta> obtenerPlanetasHabitables(Especie especie) {
+        ArrayList<Planeta> planetasHabitables = new ArrayList<>();
+
+        for (Planeta planeta : planetas) {
+                // Muestra los planetas en los que un andoriano puede vivir
+            if (especie instanceof Andoriano && !existeHabitante(Vulcaniano.class, planeta.getPoblacion())) {
+                    planetasHabitables.add(planeta);
+            } else if (especie instanceof Vulcaniano && !existeHabitante(Andoriano.class, planeta.getPoblacion())) {
+                // Muestra los planetas en los que un vulcaniano puede vivir
+                    planetasHabitables.add(planeta);
+            } else if (especie instanceof Humano) {
+                // Muestra los planetas en los que un humano puede vivir
+                    planetasHabitables.add(planeta);
+            } else if (especie instanceof Klingoniano && !planeta.getClima().equalsIgnoreCase("Calido")) {
+                // Muestra los planetas en los que un klingoniano puede vivir
+                    planetasHabitables.add(planeta);
+            } else if (especie instanceof Nibiriano && (((Nibiriano) especie).isAlimentacionFloraRoja() && planeta.isFlora_roja() || ((Nibiriano) especie).isAlimentacionPeces() && planeta.isSeres_acuaticos())) {
+                // Muestra los planetas en los que un nibiriano puede vivir
+                    planetasHabitables.add(planeta);
+            } else if (especie instanceof Ferengiano && !planeta.getClima().equalsIgnoreCase("Frio")) {
+                // Muestra los planetas en los que un Ferengiano puede vivir
+                    planetasHabitables.add(planeta);
+            }
+        }
+        return planetasHabitables;
+    }
+
+    //
     public static boolean existeHabitante(Class especieClass, List<Especie> poblacion) {
         boolean existeEspecie = false;
         for (Especie esp : poblacion) {
@@ -178,48 +218,10 @@ public class ControllerEspecie {
                 break;
             }
         }
+        // retorna false cuando no existe la especie no deseada
         return existeEspecie;
     }
 
-    public static List<Planeta> obtenerPlanetasHabitables(Especie especie) {
-
-        ArrayList<Planeta> planetasHabitables = new ArrayList<>();
-
-        for (Planeta planeta : planetas) {
-                // Muestra los planetas en los que un andoriano puede vivir
-            if (especie instanceof Andoriano && !existeHabitante(Vulcaniano.class, planeta.getPoblacion())) {
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            } else if (especie instanceof Vulcaniano && !existeHabitante(Andoriano.class, planeta.getPoblacion())) {
-                // Muestra los planetas en los que un vulcaniano puede vivir
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            } else if (especie instanceof Humano) {
-                // Muestra los planetas en los que un humano puede vivir
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            } else if (especie instanceof Klingoniano && !planeta.getClima().equalsIgnoreCase("Calido")) {
-                // Muestra los planetas en los que un klingoniano puede vivir
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            } else if (especie instanceof Nibiriano && (((Nibiriano) especie).isAlimentacionFloraRoja() && planeta.isFlora_roja() || ((Nibiriano) especie).isAlimentacionPeces() && planeta.isSeres_acuaticos())) {
-                // Muestra los planetas en los que un nibiriano puede vivir
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            } else if (especie instanceof Ferengiano && !planeta.getClima().equalsIgnoreCase("Frio")) {
-                // Muestra los planetas en los que un Ferengiano puede vivir
-                if (!planetasHabitables.contains(planeta)) {
-                    planetasHabitables.add(planeta);
-                }
-            }
-        }
-        return planetasHabitables;
-    }
 
     public static void crearFerengiano() {
         Scanner sc = new Scanner(System.in);
@@ -417,6 +419,73 @@ public class ControllerEspecie {
         }else{
             System.out.println("Aun no existen seres");
         }
+    }
+
+    public static void modificarPropiedadEspecie(){
+        Scanner sc = new Scanner(System.in);
+        int opcion ;
+        Class especie;
+        boolean salida = false;
+        if(!especies.isEmpty()){
+            do {
+                System.out.println("Que especie deseas modificar??");
+                System.out.println("[1] Ferengiano");
+                System.out.println("[2] Humano");
+                System.out.println("[3] Klingoniano");
+                System.out.println("[4] Vulcaniano");
+                opcion = sc.nextInt();
+                switch (opcion){
+                    case 1 :
+                        especie = Ferengiano.class;
+                        boolean exit = false;
+                        String nombre;
+                        if(!existeSer(especie)){
+
+                        };
+                        do {
+                            System.out.println("Introduce el nombre del Ferengiano :");
+                            nombre = sc.nextLine();
+                            Especie esp = getRaceByName(nombre);
+                            if(verificarNombreE(esp)){
+                                System.out.println("Nivel de oro :"+((Ferengiano) esp).getOro());
+                                boolean salidaOro = false;
+                                String y_n = "";
+                                do{
+                                    System.out.println("Quieres modificar el nivel de oro??");
+                                    y_n = sc.nextLine();
+                                    if(y_n.equals("yes")){
+                                        salidaOro = false;
+                                    }else if(y_n.equals("no")){
+                                        salidaOro = true;
+                                    }
+                                }while (!y_n.equalsIgnoreCase("yes") && !y_n.equalsIgnoreCase("no"));
+                            }else{
+                                System.out.println("No existe un ser con tal nombre");
+                            }
+
+                        }while (!exit);
+                        break;
+                }
+            }while (!salida);
+        }else{
+            System.out.println("Aun no hay especies registradas");
+        }
+
+
+
+    }
+
+    public static boolean existeSer(Class ser){
+        Scanner sc = new Scanner(System.in);
+        boolean si_hay = false;
+        String especie ;
+        for (Especie ps : especies){
+            if (ser.getClass().equals(ser)){
+                si_hay = true;
+            }
+        }
+        return si_hay;
+
     }
 
 }

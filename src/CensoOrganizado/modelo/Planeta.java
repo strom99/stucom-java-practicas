@@ -12,6 +12,7 @@ public class Planeta {
     private boolean flora_roja;
     private boolean seres_acuaticos;
 
+    // este constructor se usa para hacer la comparacion de un nombre de planeta (new planet)
     public Planeta(String nombre){
         this.nombre = nombre;
     }

@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class ControllerPlanet {
     public static ArrayList <Planeta> planetas = new ArrayList<>(); // para recorrer las especies
-    static String clima = "";
 
+    // consigue el objeto planeta con el nombre
     public static Planeta getPlanetByName(String name) {
         Planeta planeta = null;
         for (int i = 0; i < planetas.size(); i++) {
@@ -33,10 +33,11 @@ public class ControllerPlanet {
         return existe;
     }
 
-    public static void Clima(){
+    public static String Clima(){
         Scanner sc = new Scanner(System.in);
         boolean salida = false;
         int numero;
+        String clima="";
         do {
             System.out.println("Introduce un clima:");
             System.out.println("[1] Frio");
@@ -60,6 +61,7 @@ public class ControllerPlanet {
                     System.out.println("opcion erronea");
             }
         }while (!salida);
+        return clima;
     }
     public static void crearPlaneta(){
         Scanner sc = new Scanner(System.in);
@@ -89,7 +91,7 @@ public class ControllerPlanet {
         galaxia = sc.nextLine();
 
         // clima galaxia
-        Clima();
+        String clima = Clima();
 
         // flora roja boolean
         do{
