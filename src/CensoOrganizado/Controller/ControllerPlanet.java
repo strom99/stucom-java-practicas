@@ -1,148 +1,176 @@
 package CensoOrganizado.Controller;
 
-import CensoOrganizado.modelo.Especie;
-import CensoOrganizado.modelo.Planeta;
+import CensoOrganizado.Model.Race;
+import CensoOrganizado.Model.Planet;
 import java.util.ArrayList;
 import java.util.Scanner;
+import static CensoOrganizado.GlobalMethods.Methods.*;
 
 public class ControllerPlanet {
-    public static ArrayList <Planeta> planetas = new ArrayList<>(); // para recorrer las especies
+    public static ArrayList <Planet> planets = new ArrayList<>(); // to tour the species
 
-    // consigue el objeto planeta con el nombre
-    public static Planeta getPlanetByName(String name) {
-        Planeta planeta = null;
-        for (int i = 0; i < planetas.size(); i++) {
-            if (planetas.get(i).getNombre().equals(name)) {
-                planeta = planetas.get(i);
+    // get the planet object with the name
+    public static Planet getPlanetByName(String name) {
+        Planet planet = null;
+        for (int i = 0; i < planets.size(); i++) {
+            if (planets.get(i).getName().equals(name)) {
+                planet = planets.get(i);
                 break;
             }
         }
-        return planeta;
+        return planet;
     }
 
-    public static boolean verificarPlaneta(Planeta planeta){
-        boolean existe = false;
-        if (!planetas.isEmpty()) {
-            if(planetas.contains(planeta)){
-                existe = true;
+    public static boolean checkPlanet(Planet planet){
+        boolean exist = false;
+        if (!planets.isEmpty()) {
+            if(planets.contains(planet)){
+                exist = true;
             }
         }else{
-            System.out.println("Aun no hay planetas");
+            System.out.println("no planets yet");
         }
-        return existe;
+        return exist;
     }
 
-    public static String Clima(){
+    public static String Climate(){
         Scanner sc = new Scanner(System.in);
-        boolean salida = false;
+        boolean exit = false;
         int numero;
-        String clima="";
+        String climate="";
         do {
-            System.out.println("Introduce un clima:");
-            System.out.println("[1] Frio");
-            System.out.println("[2] Calido");
-            System.out.println("[3] Templado");
+            System.out.println("Enter a weather:");
+            System.out.println("[1] Cold");
+            System.out.println("[2] Warm");
+            System.out.println("[3] Tempered");
             numero = sc.nextInt();
             switch (numero){
                 case 1 :
-                    clima = "Frio";
-                    salida =true;
+                    climate = "Cold";
+                    exit =true;
                     break;
                 case 2:
-                    clima = "Calido";
-                    salida =true;
+                    climate = "Warm";
+                    exit =true;
                     break;
                 case 3:
-                    clima = "Templado";
-                    salida =true;
+                    climate = "Tempered";
+                    exit =true;
                     break;
                 default:
-                    System.out.println("opcion erronea");
+                    System.out.println("wrong option");
             }
-        }while (!salida);
-        return clima;
+        }while (!exit);
+        return climate;
     }
-    public static void crearPlaneta(){
+    public static void createPlanet(){
         Scanner sc = new Scanner(System.in);
-        String nombre;
-        String galaxia;
+        String name;
+        String galaxy;
         String flora;
-        String seres;
-        boolean floraRoja = false;
-        boolean seresAcuaticos = false;
-        Planeta planeta;
+        String beings;
+        boolean redFlora = false;
+        boolean aquaticsBeings = false;
 
-        // nombre planeta
-        boolean salir = false;
+        boolean exit = false;
         do{
-            if(planetas.size() == 10){
-                System.out.println("El planeta esta lleno ");
-                salir = true;
+            if(planets.size() == 10){
+                System.out.println("The planet is full");
+                exit = true;
             }else{
-                System.out.println("Introduce el nombre del planeta: ");
-                nombre = sc.nextLine();
-                if(verificarPlaneta(new Planeta(nombre))){
-                    System.out.println("Ya existe ese nombre");
+                System.out.println("Enter the name of the planet: ");
+                name = sc.nextLine();
+                if(checkPlanet(new Planet(name))){
+                    System.out.println("That name already exists");
                 } else {
-                    System.out.println("Introduce la galaxia : ");
-                    galaxia = sc.nextLine();
+                    System.out.println("Enter the galaxy:");
+                    galaxy = sc.nextLine();
 
                     // clima galaxia
-                    String clima = Clima();
+                    String clima = Climate();
 
                     // flora roja boolean
                     do{
-                        System.out.println("Tu planeta dispone de flora roja??(yes/no)");
+                        System.out.println("Your planet has red flora??(yes/no)");
                         flora = sc.nextLine();
                         if(flora.equals("yes")){
-                            floraRoja = true;
+                            redFlora = true;
                         }else if(flora.equals("no")){
-                            floraRoja = false;
+                            redFlora = false;
                         }
                     }while (!flora.equalsIgnoreCase("yes") && !flora.equalsIgnoreCase("no"));
 
                     do{
-                        System.out.println("Tu planeta dispone seres acuaticos??(yes/no)");
-                        seres = sc.nextLine();
-                        if(seres.equals("yes")){
-                            seresAcuaticos = true;
-                        }else if(seres.equals("no")){
-                            seresAcuaticos = false;
+                        System.out.println("Your planet has aquatics beings??(yes/no)");
+                        beings = sc.nextLine();
+                        if(beings.equals("yes")){
+                            aquaticsBeings = true;
+                        }else if(beings.equals("no")){
+                            aquaticsBeings = false;
                         }
-                    }while (!seres.equalsIgnoreCase("yes") && !seres.equalsIgnoreCase("no"));
-                    planetas.add(new Planeta(nombre,galaxia,clima,floraRoja,seresAcuaticos));
-                    salir = true;
+                    }while (!beings.equalsIgnoreCase("yes") && !beings.equalsIgnoreCase("no"));
+                    planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings));
+                    exit = true;
                 }
             }
-        }while(!salir);
+        }while(!exit);
     }
 
-    public static void verPlanetas(){
-        if(!planetas.isEmpty()){
-            for(int i = 0 ; i < planetas.size();i++){
-                System.out.println(planetas.get(i));
+    public static void viewPlanets(){
+        if(!planets.isEmpty()){
+            for(int i = 0 ; i < planets.size();i++){
+                System.out.println(planets.get(i));
             }
         }else{
-            System.out.println("Aun no hay planetas");
+            System.out.println("There are no planets yet");
         }
     }
 
-    public static void verPoblacionPlanetas(){
+    public static void viewPoblationPlanet(){
         Scanner sc = new Scanner(System.in);
-        Planeta planeta = null;
-        verPlanetas();
-        System.out.println("Introduce el nombre del planeta , para ver su poblacion");
-        planeta = getPlanetByName(sc.nextLine());
-        if(planeta != null){
-            System.out.println("poblacion del planeta "+planeta.getNombre());
-            if(!planeta.getPoblacion().isEmpty()){
-                for (Especie pl : planeta.getPoblacion()){
-                    System.out.println(pl);
+        Planet planet = null;
+        System.out.println("[1] View population of a planet ");
+        System.out.println("[2] View beings by Planets");
+        System.out.println("[0] Cancel");
+        switch (sc.nextInt()){
+            case 1:
+                sc.nextLine();
+                viewPlanets();
+                System.out.println("Enter the name of the planet, to see its population");
+                planet = getPlanetByName(sc.nextLine());
+                if(planet != null){
+                    System.out.println("Population of the planet "+planet.getName());
+                    if(!planet.getPoblation().isEmpty()){
+                        for (Race pl : planet.getPoblation()){
+                            System.out.println(pl);
+                            System.out.println("***************************************************************************");
+                        }
+                    }else
+                        System.out.println("0 population");
+                }else{
+                    System.out.println("that planet is not correct");
                 }
-            }else
-                System.out.println("el planeta no dispone de habitantes");
-        }else{
-            System.out.println("ese planeta no es correcto");
+                break;
+            case 2:
+                messagePresentation("BEINGS PER PLANET");
+                for (Planet planet_X :planets) {
+                    System.out.println(planet_X);
+                    System.out.println("Poblation: ");
+                    if (!planet_X.getPoblation().isEmpty()){
+                        for (Race poblation :planet_X.getPoblation()){
+                            System.out.println(poblation);
+                        }
+                    }else{
+                        System.out.println("0");
+                    }
+                    System.out.println("***************************************************************************");
+                }
+                break;
+            case 0:
+                System.out.println("cancelled");
+                break;
+            default:
+                System.out.println("wrong option");
         }
     }
 }

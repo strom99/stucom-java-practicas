@@ -1,26 +1,28 @@
 package CensoOrganizado.view;
 
-import CensoOrganizado.modelo.*;
+import CensoOrganizado.Model.*;
 
 import java.util.Scanner;
 
-import static CensoOrganizado.Controller.ControllerEspecie.*;
+import static CensoOrganizado.Controller.ControllerRace.*;
 import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
-    public static void crearPlanetas(){
-        planetas.add(new Planeta("marte", "andromeda", "Frio",true,false));
-        planetas.add(new Planeta("pluton", "filomena", "Calido",true,true));
-        planetas.add(new Planeta("urano", "filomena", "Calido",false,false));
-        planetas.add(new Planeta("neptuno", "filomena", "Calido",false,true));
-        especies.add(new Ferengiano("luis",3));
+    public static void registerPlanets(){
+        planetas.add(new Planet("marte", "andromeda", "Frio",true,false));
+        planetas.add(new Planet("pluton", "filomena", "Calido",true,true));
+        planetas.add(new Planet("urano", "filomena", "Calido",false,false));
+        planetas.add(new Planet("neptuno", "filomena", "Calido",false,true));
+        especies.add(new Ferengian("luis",3));
+        especies.add(new Klingonian("martin",5));
+        especies.add(new Klingonian("maria",6));
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int numero;
         boolean salir = false;
-        crearPlanetas();
+        registerPlanets();
         do{
             menu();
             numero = sc.nextInt();
@@ -41,9 +43,6 @@ public class App {
                     modificarPropiedadEspecie();
                     break;
                 case 6:
-                    verPlanetas();
-                    break;
-                case 7:
                     verSeres();
                     break;
                 case 0 :
@@ -62,8 +61,7 @@ public class App {
             System.out.println("Borrar a un ser [3]");
             System.out.println("ver poblacion de un planeta [4]");
             System.out.println("Modificar la propiedad de un ser [5]");
-            System.out.println("ver planetas [6]");
-            System.out.println("ver seres [7]");
+            System.out.println("ver seres [6]");
             System.out.println("Salir [0]");
 
         }

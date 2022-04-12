@@ -3,9 +3,7 @@ package Modulo2.View;
 import Modulo2.Controller.FileController;
 import Modulo2.Model.Athlete;
 import Modulo2.Model.Race;
-
 import java.util.Scanner;
-
 import static Modulo2.Controller.AthleteController.*;
 import static Modulo2.Controller.RaceController.*;
 
