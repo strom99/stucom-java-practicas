@@ -9,60 +9,58 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
-        planetas.add(new Planet("marte", "andromeda", "Frio",true,false));
-        planetas.add(new Planet("pluton", "filomena", "Calido",true,true));
-        planetas.add(new Planet("urano", "filomena", "Calido",false,false));
-        planetas.add(new Planet("neptuno", "filomena", "Calido",false,true));
-        especies.add(new Ferengian("luis",3));
-        especies.add(new Klingonian("martin",5));
-        especies.add(new Klingonian("maria",6));
+        //planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
+        planets.add(new Planet("pluton", "filomena", "Calido",true,true,8));
+        //planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
+        //planets.add(new Planet("neptuno", "filomena", "Calido",false,true,89));
+        species.add(new Ferengian("luis",3));
+        species.add(new Klingonian("martin",5));
+        species.add(new Klingonian("maria",6));
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numero;
-        boolean salir = false;
+        boolean exit = false;
         registerPlanets();
         do{
             menu();
-            numero = sc.nextInt();
-            switch (numero){
+            switch (sc.nextInt()){
                 case 1 :
-                    crearPlaneta();
+                    createPlanet();
                     break;
                 case 2 :
-                    CensarSer();
+                    censusBeing();
                     break;
                 case 3:
-                    eliminarSer();
+                    removeBeing();
                     break;
                 case 4:
-                    verPoblacionPlanetas();
+                    viewPoblationPlanet();
                     break;
                 case 5:
-                    modificarPropiedadEspecie();
+                    modifyPropertySpecies();
                     break;
                 case 6:
-                    verSeres();
+                    viewSpecies();
                     break;
                 case 0 :
-                    System.out.println("adios");
-                    salir = true;
+                    System.out.println("bye");
+                    exit = true;
                     break;
                 default:
-                    System.out.println("error");
+                    System.out.println("wrong option");
             }
-        }while (!salir);
+        }while (!exit);
     }
         public static void menu () {
             System.out.println("----------------------------");
-            System.out.println("Registrar planeta [1]");
-            System.out.println("Censar a un ser [2]");
-            System.out.println("Borrar a un ser [3]");
-            System.out.println("ver poblacion de un planeta [4]");
-            System.out.println("Modificar la propiedad de un ser [5]");
-            System.out.println("ver seres [6]");
-            System.out.println("Salir [0]");
+            System.out.println("Register planet [1]");
+            System.out.println("Census a being[2]");
+            System.out.println("Remove a being [3]");
+            System.out.println("View planetas/population [4]");
+            System.out.println("Modify the property of a being [5]");
+            System.out.println("View beings [6]");
+            System.out.println("exit [0]");
 
         }
 }

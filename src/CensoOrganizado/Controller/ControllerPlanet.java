@@ -63,6 +63,7 @@ public class ControllerPlanet {
         }while (!exit);
         return climate;
     }
+
     public static void createPlanet(){
         Scanner sc = new Scanner(System.in);
         String name;
@@ -109,7 +110,9 @@ public class ControllerPlanet {
                             aquaticsBeings = false;
                         }
                     }while (!beings.equalsIgnoreCase("yes") && !beings.equalsIgnoreCase("no"));
-                    planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings));
+
+                    int capacity = readInBetweenMinAndMax(0,5000);
+                    planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings,capacity));
                     exit = true;
                 }
             }

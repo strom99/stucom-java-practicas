@@ -32,5 +32,6 @@ public class Ferengian extends Race {
         return "Ferengian: " + getName()+
                 " - Civilization Level: " + civilizationLevel +
                 " - Latinum: " + latinum ;
+
     }
 }

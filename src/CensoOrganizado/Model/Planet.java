@@ -8,6 +8,7 @@ public class Planet {
     private String name;
     private String galaxy;
     public List<Race> poblation = new ArrayList<>();
+    private int capacity;
     private String climate;
     private boolean redFlora;
     private boolean aquaticsBeings;
@@ -17,12 +18,13 @@ public class Planet {
         this.name = name;
     }
 
-    public Planet(String name, String galaxy, String clima, boolean flora_roja, boolean seres_acuaticos) {
+    public Planet(String name, String galaxy, String clima, boolean flora_roja, boolean seres_acuaticos, int capacity) {
         this.name = name;
         this.galaxy=galaxy;
         this.climate = clima;
         this.redFlora=flora_roja;
         this.aquaticsBeings =seres_acuaticos;
+        this.capacity = capacity;
     }
 
 
@@ -74,6 +76,14 @@ public class Planet {
         this.aquaticsBeings = aquaticsBeings;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -95,6 +105,7 @@ public class Planet {
                 " - climate: '" + climate + '\'' +
                 " - Red flora: " + redFlora +
                 " -  Aquatics Beings: " + aquaticsBeings +
+                " - Capacity: "+ capacity+
                 ']';
     }
 }

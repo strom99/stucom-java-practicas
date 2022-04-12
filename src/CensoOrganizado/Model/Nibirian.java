@@ -10,7 +10,7 @@ public class Nibirian extends Race {
     }
 
     public Nibirian(String name , boolean redFloraFood , boolean fishFeed){
-        super(name);
+        super(name ,2);
         this.redFloraFood = redFloraFood;
         this.fishFeed = fishFeed;
     }
@@ -34,7 +34,8 @@ public class Nibirian extends Race {
     @Override
     public String toString() {
         return "Nibiriano: " + getName()+
-                " - Red Flora Food=" + redFloraFood +
-                " - Fish Feed=" + fishFeed;
+                " Civization level : "+ getCivilizationLevel()+
+                " - Red Flora Food: " + redFloraFood +
+                " - Fish Feed: " + fishFeed;
     }
 }

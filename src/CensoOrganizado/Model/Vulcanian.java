@@ -22,8 +22,8 @@ public class Vulcanian extends Race {
 
     @Override
     public String toString() {
-        return "Vulcaniano: " +getName()+
-                " - nivelCivilizacion=" + civilizationLevel +
-                " - Meditation Level=" + meditationLevel;
+        return "Vulcanian: " +getName()+
+                " - Civilization level: " + civilizationLevel +
+                " - Meditation Level: " + meditationLevel;
     }
 }
