@@ -7,6 +7,8 @@ import java.util.Scanner;
 import static CensoOrganizado.GlobalMethods.Methods.*;
 
 public class ControllerPlanet {
+    //I put a limit on the array of planets
+    public static int capacityArraysPlanets = 6;
     public static ArrayList <Planet> planets = new ArrayList<>(); // to tour the species
 
     // get the planet object with the name
@@ -68,14 +70,11 @@ public class ControllerPlanet {
         Scanner sc = new Scanner(System.in);
         String name;
         String galaxy;
-        String flora;
         String beings;
-        boolean redFlora = false;
-        boolean aquaticsBeings = false;
 
         boolean exit = false;
         do{
-            if(planets.size() == 10){
+            if(planets.size() == capacityArraysPlanets){
                 System.out.println("The planet is full");
                 exit = true;
             }else{
@@ -87,32 +86,16 @@ public class ControllerPlanet {
                     System.out.println("Enter the galaxy:");
                     galaxy = sc.nextLine();
 
-                    // clima galaxia
                     String clima = Climate();
 
-                    // flora roja boolean
-                    do{
-                        System.out.println("Your planet has red flora??(yes/no)");
-                        flora = sc.nextLine();
-                        if(flora.equals("yes")){
-                            redFlora = true;
-                        }else if(flora.equals("no")){
-                            redFlora = false;
-                        }
-                    }while (!flora.equalsIgnoreCase("yes") && !flora.equalsIgnoreCase("no"));
+                    // red flora boolean
+                    boolean redFlora = trueOrFalse("Your planet has red flora??(yes/no)");
 
-                    do{
-                        System.out.println("Your planet has aquatics beings??(yes/no)");
-                        beings = sc.nextLine();
-                        if(beings.equals("yes")){
-                            aquaticsBeings = true;
-                        }else if(beings.equals("no")){
-                            aquaticsBeings = false;
-                        }
-                    }while (!beings.equalsIgnoreCase("yes") && !beings.equalsIgnoreCase("no"));
+                    boolean aquaticsBeings = trueOrFalse("Your planet has aquatics beings??(yes/no)");
 
-                    int capacity = readInBetweenMinAndMax(0,5000);
+                    int capacity = readInBetweenMinAndMax("what is the capacity of your planet?",0,5000);
                     planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings,capacity));
+                    System.out.println("created planet");
                     exit = true;
                 }
             }

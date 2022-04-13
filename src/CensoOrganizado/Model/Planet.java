@@ -101,11 +101,11 @@ public class Planet {
     public String toString() {
         return "Planet : "+ name + "\n" +
                 "[galaxy: '" + galaxy + '\'' +
-                " - poblation: " + poblation +
                 " - climate: '" + climate + '\'' +
                 " - Red flora: " + redFlora +
                 " -  Aquatics Beings: " + aquaticsBeings +
                 " - Capacity: "+ capacity+
+                " - poblation: " + poblation +
                 ']';
     }
 }

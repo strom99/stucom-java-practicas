@@ -1,5 +1,6 @@
 package CensoOrganizado.view;
 
+import CensoOrganizado.Controller.FileController;
 import CensoOrganizado.Model.*;
 
 import java.util.Scanner;
@@ -9,12 +10,12 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
-        //planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
-        planets.add(new Planet("pluton", "filomena", "Calido",true,true,8));
+        planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
+        planets.add(new Planet("pluton", "filomena", "Calido",true,true,1));
         //planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
         //planets.add(new Planet("neptuno", "filomena", "Calido",false,true,89));
-        species.add(new Ferengian("luis",3));
-        species.add(new Klingonian("martin",5));
+        //species.add(new Ferengian("luis",3));
+        species.add(new Andorian("martin", "Strange" ,true));
         species.add(new Klingonian("maria",6));
     }
 
@@ -27,18 +28,24 @@ public class App {
             switch (sc.nextInt()){
                 case 1 :
                     createPlanet();
+                    FileController.writePlanets();
                     break;
                 case 2 :
                     censusBeing();
+                    FileController.writePlanets();
+                    FileController.writeSpecies();
                     break;
                 case 3:
                     removeBeing();
+                    FileController.writePlanets();
+                    FileController.writeSpecies();
                     break;
                 case 4:
                     viewPoblationPlanet();
                     break;
                 case 5:
                     modifyPropertySpecies();
+                    FileController.writeSpecies();
                     break;
                 case 6:
                     viewSpecies();

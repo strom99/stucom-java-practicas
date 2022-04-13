@@ -14,136 +14,7 @@ import static CensoOrganizado.Model.Human.correctAge;
 public class ControllerRace {
     public static ArrayList<Race> species = new ArrayList<>();
 
-    public static boolean checkName(String name) {
-        boolean exists= false;
-        if (!species.isEmpty()) {
-            for (int i = 0; i < species.size(); i++) {
-                if (species.get(i).getName().equals(name)) {
-                    exists = true;
-                }
-            }
-        }else {
-            System.out.println("There are no beings yet");
-        }
-        return exists;
-    }
-
-    public static void viewSpecies() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("[1] View beings by species");
-        System.out.println("[2] View all beings");
-        System.out.println("[0] exit");
-        switch (sc.nextInt()){
-            case 1:
-                electionRace();
-                break;
-            case 2:
-                if (!species.isEmpty()) {
-                    System.out.println("Beings: ");
-                    for (Race species_X : species) {
-                        System.out.println(species_X);
-                    }
-                } else {
-                    System.out.println("There are no registered species yet.");
-                }
-                break;
-            case 0:
-                System.out.println("cancelled");
-                break;
-            default:
-                System.out.println("wrong option");
-        }
-    }
-
-    public static void electionRace(){
-        Scanner sc = new Scanner(System.in);
-        messageElection("Choose a species:");
-        switch (sc.nextInt()){
-            case 1:
-                System.out.println("Selected Species: Andorrans");
-                List <Race> list_andorrians = showSpecies(Andorian.class);
-                messagePresentation("SERES POR ESPECIE");
-                if (!list_andorrians.isEmpty()){
-                    for (Race andorian : list_andorrians){
-                        System.out.println(andorian);
-                    }
-                    System.out.println("***************************************************************************");
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 2:
-                System.out.println("Selected Species: Ferengians");
-                List <Race> list_ferengian = showSpecies(Ferengian.class);
-                messagePresentation("BEINGS BY SPECIES");
-                if (!list_ferengian.isEmpty()){
-                    for (Race ferengian : list_ferengian){
-                        System.out.println(ferengian);
-                    }
-                    System.out.println("***************************************************************************");
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 3:
-                System.out.println("Selected Species: Humasn");
-                List <Race> list_humans = showSpecies(Human.class);
-                messagePresentation("BEINGS BY SPECIES");
-                if (!list_humans.isEmpty()){
-                    for (Race human : list_humans){
-                        System.out.println(human);
-                    }
-                    System.out.println("***************************************************************************");
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 4:
-                System.out.println("Selected Species: Klingonians");
-                List <Race> list_klingonians = showSpecies(Klingonian.class);
-                messagePresentation("BEINGS BY SPECIES");
-                if (!list_klingonians.isEmpty()){
-                    for (Race klingonian : list_klingonians){
-                        System.out.println(klingonian);
-                    }
-                    System.out.println("***************************************************************************");
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 5:
-                System.out.println("Selected Species: Nibirian");
-                List <Race> list_nibirians = showSpecies(Nibirian.class);
-                messagePresentation("BEINGS BY SPECIES");
-                if (!list_nibirians.isEmpty()){
-                    for (Race nibirian : list_nibirians){
-                        System.out.println(nibirian);
-                    }
-                    System.out.println("***************************************************************************");
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 6:
-                System.out.println("Selected Species: Vulcanian");
-                List <Race> list_vulcanians = showSpecies(Vulcanian.class);
-                messagePresentation("BEINGS BY SPECIES");
-                if (!list_vulcanians.isEmpty()){
-                    for (Race vulcanian : list_vulcanians){
-                        System.out.println(vulcanian);
-                    }
-                }else{
-                    System.out.println("0");
-                }
-                break;
-            case 0:
-                System.out.println("cancelled");
-                break;
-            default:
-                System.out.println("wrong option");
-        }
-    }
-
+    // message to choose species
     public static void messageElection(String message){
         System.out.println(message);
         System.out.println("[1] Andorian");
@@ -153,6 +24,78 @@ public class ControllerRace {
         System.out.println("[5] Nibirian");
         System.out.println("[6] Vulcanian");
         System.out.println("[0] Cancel");
+    }
+
+    // view species
+    public static void viewSpecies() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("[1] View beings by species");
+        System.out.println("[2] View all beings");
+        System.out.println("[0] exit");
+        switch (sc.nextInt()){
+            case 1:
+                electionRaceToSee();
+                break;
+            case 2:
+                if (!species.isEmpty()) {
+                    System.out.println("Beings: ");
+                    for (Race specie : species) {
+                        System.out.println(specie);
+                    }
+                } else {
+                    System.out.println("There are no registered species yet.");
+                }
+                break;
+            case 0:
+                System.out.println("Cancelled");
+                break;
+            default:
+                System.out.println("Wrong option");
+        }
+    }
+
+    public static void speciesByClass(Class x,String name_species){
+        System.out.println("Selected Species: "+ name_species);
+        List <Race> list = listSpecies(x);
+        messagePresentation("SERES POR ESPECIE");
+        if (!list.isEmpty()){
+            for (Race species : list){
+                System.out.println(species);
+            }
+            System.out.println("***************************************************************************");
+        }else{
+            System.out.println("0");
+        }
+    }
+
+    public static void electionRaceToSee(){
+        Scanner sc = new Scanner(System.in);
+        messageElection("Choose a species:");
+        switch (sc.nextInt()){
+            case 1:
+                speciesByClass(Andorian.class, "Andorian");
+                break;
+            case 2:
+                speciesByClass(Ferengian.class, "Ferengian");
+                break;
+            case 3:
+                speciesByClass(Human.class, "Human");
+                break;
+            case 4:
+                speciesByClass(Klingonian.class, "Klingonian");
+                break;
+            case 5:
+                speciesByClass(Nibirian.class, "Nibirian");
+                break;
+            case 6:
+                speciesByClass(Vulcanian.class, "Vulcanian");
+                break;
+            case 0:
+                System.out.println("cancelled");
+                break;
+            default:
+                System.out.println("wrong option");
+        }
     }
 
     public static void censusBeing() {
@@ -196,8 +139,7 @@ public class ControllerRace {
         int rangeN;
         boolean exitName = false;
         boolean exitRange = false;
-        String aenar;
-        boolean Aenar = false;
+
         do {
             System.out.println("Enter the name of the being: ");
             name = sc.nextLine();
@@ -238,111 +180,12 @@ public class ControllerRace {
         } while (!exitRange);
 
         sc.nextLine();
-        do {
-            System.out.println("Are you Aenar ??(yes/no)");
-            aenar = sc.nextLine();
-            if (aenar.equals("yes")) {
-                Aenar = true;
-            } else if (aenar.equals("no")) {
-                Aenar = false;
-            }
-        } while (!aenar.equalsIgnoreCase("yes") && !aenar.equalsIgnoreCase("no"));
+        boolean Aenar = trueOrFalse("Are you Aenar ??(yes/no)");
+
         System.out.println("Created being!!!");
         species.add(new Andorian(name, range, Aenar));
         enterPlanet(name);
     }
-
-    // Enter the being on a planet (#1)
-    public static void enterPlanet(String name) {
-        Scanner sc = new Scanner(System.in);
-        Race x = getRaceByName(name);
-        String namePlanet;
-        boolean exit = false;
-        do {
-            System.out.println("Habitable planets:");
-            // create an array to display the planets that come out of the getHabitablePlanets() method, which returns an array;
-            List<Planet> habitablePlanets = getHabitablePlanets(x);
-            if (habitablePlanets.isEmpty()) {
-                System.out.println("0");
-                System.out.println("The being will be eliminated due to lack of planets");
-                // remove the being from the array of species if there are no planets
-                species.remove(x);
-
-                exit = true;
-            } else {
-                //  show habitable planets from Habitable planets array
-                for (Planet planetsX: habitablePlanets) {
-                    if(planetsX.getPoblation().size() != planetsX.getCapacity()){
-                        System.out.println(planetsX);
-                    }else{
-                        exit = true;
-                    }
-                }
-                if(exit != true){
-                    System.out.println("Select the planet you want to live on?");
-                    namePlanet = sc.nextLine();
-                    // checking if the planet exists
-                    if (checkPlanet(new Planet(namePlanet))) {
-                        // add the being to the population of that planet
-                        Planet planet = getPlanetByName(namePlanet);
-                        planet.getPoblation().add(x);
-                        System.out.println("correct census");
-                        exit =true;
-                    } else {
-                        System.out.println("The planet does not exist!");
-                    }
-                }else{
-                    System.out.println("0");
-                    System.out.println("The being will be eliminated due to lack of planets");
-                    // remove the being from the array of species if there are no planets
-                    species.remove(x);
-                }
-
-            }
-        } while (!exit);
-    }
-
-    // Check population for certain inhabitant (#2), returns list of planets in an array
-    public static List<Planet> getHabitablePlanets(Race species) {
-        ArrayList<Planet> habitablesPlanets = new ArrayList<>();
-
-        for (Planet planet : planets) {
-                // Shows the planets an Andorian can live on
-            if ( species instanceof Andorian && !existsHabitant(Vulcanian.class, planet.getPoblation())) {
-                habitablesPlanets.add(planet);
-            } else if (species instanceof Vulcanian && !existsHabitant(Andorian.class, planet.getPoblation())) {
-                // Shows the planets a Vulcan can live on
-                habitablesPlanets.add(planet);
-            } else if (species instanceof Human) {
-                // Shows the planets on which a human can live
-                habitablesPlanets.add(planet);
-            } else if (species instanceof Klingonian && !planet.getClimate().equalsIgnoreCase("Warm")) {
-                // Shows the planets a Klingonian can live on
-                habitablesPlanets.add(planet);
-            } else if (species instanceof Nibirian && (((Nibirian) species).isRedFloraFood() && planet.isRedFlora() || ((Nibirian) species).isFishFeed() && planet.isAquaticsBeings())) {
-                // Shows the planets a Nibirian can live on
-                habitablesPlanets.add(planet);
-            } else if (species instanceof Ferengian && !planet.getClimate().equalsIgnoreCase("Cold")) {
-                // Shows the planets a Ferengian can live on
-                habitablesPlanets.add(planet);
-            }
-        }
-        return habitablesPlanets;
-    }
-
-    //
-    public static boolean existsHabitant(Class speciesClass, List<Race> poblation) {
-        boolean existsBeing = false;
-        for (Race esp : poblation) {
-            if (esp.getClass().equals(speciesClass)) {
-                existsBeing = true;
-                break;
-            }
-        }
-        // returns false when the unwanted species does not exist
-        return existsBeing;
-    }
-
 
     public static void createFerengian() {
         Scanner sc = new Scanner(System.in);
@@ -375,7 +218,6 @@ public class ControllerRace {
     public static void createHuman() {
         Scanner sc = new Scanner(System.in);
         String name;
-        Human human;
         int age;
         char gender;
         boolean exitName = false;
@@ -424,8 +266,7 @@ public class ControllerRace {
             }
         } while (!exitName);
 
-        System.out.println("Enter the strength level:");
-        strengthLevel = readInBetweenMinAndMax(50, 350);
+        strengthLevel = readInBetweenMinAndMax("Enter the strength level:",50, 350);
 
         species.add(new Klingonian(name, strengthLevel));
         System.out.println("Created klingonian");
@@ -435,12 +276,8 @@ public class ControllerRace {
     public static void createNibirian() {
         Scanner sc = new Scanner(System.in);
         String name;
-        Nibirian nibirian;
         boolean exitName = false;
-        boolean feedPl = false;
-        String feedingPlants;
-        boolean feedingFi = false;
-        String feedingFish;
+
         do {
             System.out.println("Enter the name of the being: ");
             name = sc.nextLine();
@@ -451,25 +288,9 @@ public class ControllerRace {
             }
         } while (!exitName);
 
-        do {
-            System.out.println("Your diet is based on plants??(yes/no)");
-            feedingPlants = sc.nextLine();
-            if (feedingPlants.equals("yes")) {
-                feedPl = true;
-            } else if (feedingPlants.equals("no")) {
-                feedPl = false;
-            }
-        } while (!feedingPlants.equalsIgnoreCase("yes") && !feedingPlants.equalsIgnoreCase("no"));
+        boolean feedPl = trueOrFalse("Your diet is based on plants??(yes/no)");
 
-        do {
-            System.out.println("Is your diet based on fish??(yes/no)");
-            feedingFish = sc.nextLine();
-            if (feedingFish.equals("yes")) {
-                feedingFi = true;
-            } else if (feedingFish.equals("no")) {
-                feedingFi = false;
-            }
-        } while (!feedingFish.equalsIgnoreCase("yes") && !feedingFish.equalsIgnoreCase("no"));
+        boolean feedingFi = trueOrFalse("Is your diet based on fish??(yes/no)");
 
         species.add(new Nibirian(name, feedPl, feedingFi));
         System.out.println("Created Nibirian");
@@ -492,11 +313,94 @@ public class ControllerRace {
             }
         } while (!exitName);
 
-        levelMeditation = readInBetweenMinAndMax(0, 10);
+        levelMeditation = readInBetweenMinAndMax("Enter the level meditacion: ",0, 10);
 
         species.add(new Vulcanian(name, levelMeditation));
         System.out.println("Created vulcanian");
         enterPlanet(name);
+    }
+
+    // Enter the being on a planet (#1)
+    public static void enterPlanet(String name) {
+        Scanner sc = new Scanner(System.in);
+        Race x = getRaceByName(name);
+        String namePlanet;
+        boolean exit = false;
+        System.out.println("You need to census the being on a planet (required)");
+        do {
+            System.out.println("Habitable planets:");
+            // create an array to display the planets that come out of the getHabitablePlanets() method, which returns an array;
+            List<Planet> habitablePlanets = getHabitablePlanets(x);
+            if (habitablePlanets.isEmpty()) {
+                System.out.println("0");
+                System.out.println("The being will be eliminated due to lack of planets");
+                // remove the being from the array of species if there are no planets
+                species.remove(x);
+                exit = true;
+            } else {
+                //  show habitable planets from Habitable planets array
+                for (Planet poblation : habitablePlanets){
+                    System.out.println(poblation);
+                }
+                System.out.println("Select the planet you want to live on?");
+                namePlanet = sc.nextLine();
+                // checking if the planet exists
+                if (checkPlanet(new Planet(namePlanet))) {
+                    // add the being to the population of that planet
+                    Planet planet = getPlanetByName(namePlanet);
+                    planet.getPoblation().add(x);
+                    System.out.println("correct census");
+                    exit =true;
+                } else {
+                    System.out.println("The planet does not exist!");
+                }
+            }
+        } while (!exit);
+    }
+
+    // Check population for certain inhabitant (#2), returns list of planets in an array
+    public static List<Planet> getHabitablePlanets(Race species) {
+        ArrayList<Planet> habitablesPlanets = new ArrayList<>();
+
+        for (Planet planet : planets) {
+            //First of all, we look at the capacity of the planet
+            if(planet.getPoblation().size() != planet.getCapacity()){
+                // Shows the planets an Andorian can live on
+                if ( species instanceof Andorian && !existsHabitant(Vulcanian.class, planet.getPoblation())) {
+                    habitablesPlanets.add(planet);
+                } else if (species instanceof Vulcanian && !existsHabitant(Andorian.class, planet.getPoblation())) {
+                // Shows the planets a Vulcan can live on
+                    habitablesPlanets.add(planet);
+                } else if (species instanceof Human) {
+                // Shows the planets on which a human can live
+                    habitablesPlanets.add(planet);
+                } else if (species instanceof Klingonian && !planet.getClimate().equalsIgnoreCase("Warm")) {
+                // Shows the planets a Klingonian can live on
+                    habitablesPlanets.add(planet);
+                } else if (species instanceof Nibirian && (((Nibirian) species).isRedFloraFood() && planet.isRedFlora() || ((Nibirian) species).isFishFeed() && planet.isAquaticsBeings()
+                   //
+                   || !((Nibirian) species).isRedFloraFood() && !((Nibirian) species).isFishFeed() )) {
+                // Shows the planets a Nibirian can live on
+                    habitablesPlanets.add(planet);
+                } else if (species instanceof Ferengian && !planet.getClimate().equalsIgnoreCase("Cold")) {
+                // Shows the planets a Ferengian can live on
+                    habitablesPlanets.add(planet);
+                }
+            }
+        }
+        return habitablesPlanets;
+    }
+
+    //we insert a class of the being that we want to check
+    public static boolean existsHabitant(Class speciesClass, List<Race> poblation) {
+        boolean existsBeing = false;
+        for (Race esp : poblation) {
+            if (esp.getClass().equals(speciesClass)) {
+                existsBeing = true;
+                break;
+            }
+        }
+        return existsBeing;
     }
 
     public static Race getRaceByName(String name) {
@@ -504,16 +408,27 @@ public class ControllerRace {
         for (int i = 0; i < species.size(); i++) {
             if (species.get(i).getName().equals(name)) {
                 x = species.get(i);
-                return x;
+                break;
             }
 
         }
         return x;
     }
 
+    public static boolean existsByClass(Class x){
+        boolean exists = false;
+        for (Race ps : species){
+            if (ps.getClass().equals(x)){
+                exists = true;
+                return exists;
+            }
+        }
+        return exists;
+
+    }
+
     public static void removeBeing(){
         Scanner sc = new Scanner(System.in);
-        String name;
         if(!species.isEmpty()){
             for (Race x :species){
                 System.out.println(x);
@@ -522,12 +437,10 @@ public class ControllerRace {
             Race x = getRaceByName(sc.nextLine());
             if(x != null){
                 for (Planet planet : planets){
-                    if(planet.getPoblation().contains(x)){
-                        planet.getPoblation().remove(x);
-                    }
+
                 }
                 species.remove(x);
-                System.out.println("eliminado");
+                System.out.println("Removed");
             }else {
                 System.out.println("that being does not exist");
             }
@@ -577,7 +490,7 @@ public class ControllerRace {
         String name = "";
 
         if(existsByClass(Ferengian.class)){
-            List<Race> list_ferengian = showSpecies(Ferengian.class);
+            List<Race> list_ferengian = listSpecies(Ferengian.class);
             for(Race ferengian : list_ferengian){
                 System.out.println(ferengian);
             }
@@ -601,22 +514,13 @@ public class ControllerRace {
         }
     }
 
-    public static List <Race> showSpecies(Class x){
-        ArrayList <Race> list_beings = new ArrayList<>();
-        for (Race specie : species){
-            if (species.getClass().equals(x)){
-                list_beings.add(specie);
-            }
-        }
-        return list_beings;
-    }
     public static void modifyHumano(Race n){
         Scanner sc = new Scanner(System.in);
         Human x =  ((Human) n);
         boolean exit = false;
 
         if(existsByClass(Human.class)){
-            List<Race> list_humans = showSpecies(Human.class);
+            List<Race> list_humans = listSpecies(Human.class);
             for(Race human : list_humans){
                 System.out.println(human);
             }
@@ -625,8 +529,7 @@ public class ControllerRace {
                 x = (Human) getRaceByName(sc.nextLine());
                 System.out.println("Age: "+x.getAge());
                 if(x != null){
-                    System.out.println("Enter the new age:");
-                    x.setAge(readInBetweenMinAndMax(0,130));
+                    x.setAge(readInBetweenMinAndMax("Enter the new age:",0,130));
                     System.out.println("Modified age");
                 }else{
                     System.out.println("There is no being with such a name");
@@ -644,7 +547,7 @@ public class ControllerRace {
         boolean exit = false;
 
         if(existsByClass(Klingonian.class)){
-            List<Race> list_klingonians = showSpecies(Klingonian.class);
+            List<Race> list_klingonians = listSpecies(Klingonian.class);
             for(Race klingonian : list_klingonians){
                 System.out.println(klingonian);
             }
@@ -653,8 +556,7 @@ public class ControllerRace {
                 x = (Klingonian) getRaceByName(sc.nextLine());
                 if(x != null){
                     System.out.println("Strength level: "+x.getStrengthLevel());
-                    System.out.println("Enter the new strength level:");
-                    x.setStrengthLevel(readInBetweenMinAndMax(50,350));
+                    x.setStrengthLevel(readInBetweenMinAndMax("Enter the new strength level:",50,350));
                     System.out.println("Modified force level.!");
                     exit = true;
                 }else{
@@ -672,7 +574,7 @@ public class ControllerRace {
         boolean exit = false;
 
         if(existsByClass(Vulcanian.class)){
-            List<Race> list_vulcanians = showSpecies(Vulcanian.class);
+            List<Race> list_vulcanians = listSpecies(Vulcanian.class);
             for(Race vulcanian : list_vulcanians){
                 System.out.println(vulcanian);
             }
@@ -681,8 +583,7 @@ public class ControllerRace {
                 x = (Vulcanian) getRaceByName(sc.nextLine());
                 if(x != null){
                     System.out.println("Meditation level: "+x.getMeditationLevel());
-                    System.out.println("Enter the new level of meditation:");
-                    x.setMeditationLevel(readInBetweenMinAndMax(0 , 10));
+                    x.setMeditationLevel(readInBetweenMinAndMax("Enter the new level of meditation:",0 , 10));
                     System.out.println("Modified meditation level!");
                     exit = true;
                 }else{
@@ -694,16 +595,15 @@ public class ControllerRace {
         }
     }
 
-    public static boolean existsByClass(Class x){
-        boolean exists = false;
-        for (Race ps : species){
-            if (ps.getClass().equals(x)){
-                exists = true;
-                return exists;
+    //returns a list of beings that have the indicated class
+    public static List <Race> listSpecies(Class x){
+        ArrayList <Race> listSpecies = new ArrayList<>();
+        for (Race specie : species){
+            if (specie.getClass().equals(x)){
+                listSpecies.add(specie);
             }
         }
-        return exists;
-
+        return listSpecies;
     }
 
 }

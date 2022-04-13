@@ -36,7 +36,7 @@ public class Race {
         if (obj == null) {
             return false;
         }
-        if (this == obj|| !(obj instanceof Race)) {
+        if (!(obj instanceof Race)) {
             return false;
         }
         final Race other = (Race) obj;
