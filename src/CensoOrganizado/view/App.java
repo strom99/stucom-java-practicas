@@ -10,42 +10,35 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
-        planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
-        planets.add(new Planet("pluton", "filomena", "Calido",true,true,1));
-        //planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
-        //planets.add(new Planet("neptuno", "filomena", "Calido",false,true,89));
-        //species.add(new Ferengian("luis",3));
-        species.add(new Andorian("martin", "Strange" ,true));
-        species.add(new Klingonian("maria",6));
+        planets.add(new Planet("marte", "andromeda", "Frio",true,false,3));
+        planets.add(new Planet("pluton", "filomena", "Calido",true,true,4));
+        planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
         registerPlanets();
+        /*Every time the app returns to the starting point, the data will be recorded in the .txt file, I put it there to save myself putting the code in each case */
         do{
+            FileController.writePlanets();
+            FileController.writeSpecies();
             menu();
             switch (sc.nextInt()){
                 case 1 :
                     createPlanet();
-                    FileController.writePlanets();
                     break;
                 case 2 :
                     censusBeing();
-                    FileController.writePlanets();
-                    FileController.writeSpecies();
                     break;
                 case 3:
                     removeBeing();
-                    FileController.writePlanets();
-                    FileController.writeSpecies();
                     break;
                 case 4:
                     viewPoblationPlanet();
                     break;
                 case 5:
                     modifyPropertySpecies();
-                    FileController.writeSpecies();
                     break;
                 case 6:
                     viewSpecies();

@@ -71,13 +71,13 @@ public class FileController {
                         newfile.write(x.getAge()+"\t\t"+ x.getGender());
                     }else if(specie instanceof Klingonian){
                         Klingonian x = ((Klingonian) specie);
-                        newfile.write("\t\t"+ x.getStrengthLevel());
+                        newfile.write("\t"+ x.getStrengthLevel());
                     }else if(specie instanceof Nibirian){
                         Nibirian x = ((Nibirian) specie);
                         newfile.write(x.isFishFeed()+ "\t\t"+ x.isRedFloraFood());
                     }else if(specie instanceof Vulcanian){
                         Vulcanian x = ((Vulcanian) specie);
-                        newfile.write("\t\t"+ x.getMeditationLevel());
+                        newfile.write("\t"+ x.getMeditationLevel());
                     }
                     newfile.write("\t\t" + specie.getCivilizationLevel());
                     // write over file

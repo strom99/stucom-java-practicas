@@ -1,2 +1,1 @@
-marte		andromeda		Frio		true		false		1		Poblacion [0]
-pluton		filomena		Calido		true		true		1		Poblacion [0]
+urano		andromeda		Warm		true		true		5		Poblacion [0]
