@@ -1,2 +1,2 @@
-marte		andromeda		Frio		true		false		1		Poblacion [0]
-pluton		filomena		Calido		true		true		1		Poblacion [0]
+marte		andromeda		Frio		true		false		5		Poblacion [	leo,]
+pluton		filomena		Calido		true		true		5		Poblacion [0]

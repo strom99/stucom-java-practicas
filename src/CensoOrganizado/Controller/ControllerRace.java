@@ -345,7 +345,7 @@ public class ControllerRace {
                 System.out.println("Select the planet you want to live on?");
                 namePlanet = sc.nextLine();
                 // checking if the planet exists
-                if (checkPlanet(new Planet(namePlanet))) {
+                if (habitablePlanets.contains(new Planet(namePlanet))) {
                     // add the being to the population of that planet
                     Planet planet = getPlanetByName(namePlanet);
                     planet.getPoblation().add(x);

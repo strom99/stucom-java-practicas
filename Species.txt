@@ -1,1 +1,3 @@
 martin		Strange		true		2
+maria				6		3
+leo		Advocate		true		2

@@ -10,8 +10,8 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
-        planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
-        planets.add(new Planet("pluton", "filomena", "Calido",true,true,1));
+        planets.add(new Planet("marte", "andromeda", "Frio",true,false,5));
+        planets.add(new Planet("pluton", "filomena", "Calido",true,true,5));
         //planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
         //planets.add(new Planet("neptuno", "filomena", "Calido",false,true,89));
         //species.add(new Ferengian("luis",3));
