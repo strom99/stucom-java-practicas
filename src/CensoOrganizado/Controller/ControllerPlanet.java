@@ -8,7 +8,6 @@ import static CensoOrganizado.GlobalMethods.Methods.*;
 
 public class ControllerPlanet {
     //I put a limit on the array of planets
-    public static int capacityArraysPlanets = 6;
     public static ArrayList <Planet> planets = new ArrayList<>(); // to tour the species
 
     // get the planet object with the name
@@ -29,8 +28,6 @@ public class ControllerPlanet {
             if(planets.contains(planet)){
                 exist = true;
             }
-        }else{
-            System.out.println("no planets yet");
         }
         return exist;
     }
@@ -70,36 +67,26 @@ public class ControllerPlanet {
         Scanner sc = new Scanner(System.in);
         String name;
         String galaxy;
-        String beings;
 
-        boolean exit = false;
-        do{
-            if(planets.size() == capacityArraysPlanets){
-                System.out.println("The planet is full");
-                exit = true;
-            }else{
-                System.out.println("Enter the name of the planet: ");
-                name = sc.nextLine();
-                if(checkPlanet(new Planet(name))){
-                    System.out.println("That name already exists");
-                } else {
-                    System.out.println("Enter the galaxy:");
-                    galaxy = sc.nextLine();
+        System.out.println("Enter the name of the planet: ");
+        name = sc.nextLine();
+        if(checkPlanet(new Planet(name))){
+            System.out.println("That name already exists");
+        } else {
+            System.out.println("Enter the galaxy:");
+            galaxy = sc.nextLine();
 
-                    String clima = Climate();
+            String clima = Climate();
 
-                    // red flora boolean
-                    boolean redFlora = trueOrFalse("Your planet has red flora??(yes/no)");
+            // red flora boolean
+            boolean redFlora = trueOrFalse("Your planet has red flora??(yes/no)");
 
-                    boolean aquaticsBeings = trueOrFalse("Your planet has aquatics beings??(yes/no)");
+            boolean aquaticsBeings = trueOrFalse("Your planet has aquatics beings??(yes/no)");
 
-                    int capacity = readInBetweenMinAndMax("what is the capacity of your planet?",0,5000);
-                    planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings,capacity));
-                    System.out.println("created planet");
-                    exit = true;
-                }
-            }
-        }while(!exit);
+            int capacity = readInBetweenMinAndMax("what is the capacity of your planet?",0,5000);
+            planets.add(new Planet(name,galaxy,clima,redFlora,aquaticsBeings,capacity));
+            System.out.println("created planet");
+        }
     }
 
     public static void viewPlanets(){
@@ -113,50 +100,56 @@ public class ControllerPlanet {
     }
 
     public static void viewPoblationPlanet(){
-        Scanner sc = new Scanner(System.in);
-        Planet planet = null;
-        System.out.println("[1] View population of a planet ");
-        System.out.println("[2] View beings by Planets");
-        System.out.println("[0] Cancel");
-        switch (sc.nextInt()){
-            case 1:
-                sc.nextLine();
-                viewPlanets();
-                System.out.println("Enter the name of the planet, to see its population");
-                planet = getPlanetByName(sc.nextLine());
-                if(planet != null){
-                    System.out.println("Population of the planet "+planet.getName());
-                    if(!planet.getPoblation().isEmpty()){
-                        for (Race pl : planet.getPoblation()){
-                            System.out.println(pl);
-                            System.out.println("***************************************************************************");
-                        }
-                    }else
-                        System.out.println("0 population");
-                }else{
-                    System.out.println("that planet is not correct");
-                }
-                break;
-            case 2:
-                messagePresentation("BEINGS PER PLANET");
-                for (Planet planet_X :planets) {
-                    System.out.println(planet_X);
-                    System.out.println("Poblation: ");
-                    if (!planet_X.getPoblation().isEmpty()){
-                        for (Race poblation :planet_X.getPoblation()){
-                            System.out.println(poblation);
-                        }
+
+        if(!planets.isEmpty()){
+            Scanner sc = new Scanner(System.in);
+            Planet planet = null;
+            System.out.println("[1] View population of a planet ");
+            System.out.println("[2] View beings by Planets");
+            System.out.println("[0] Cancel");
+            switch (sc.nextInt()){
+                case 1:
+                    sc.nextLine();
+                    viewPlanets();
+                    System.out.println("Enter the name of the planet, to see its population");
+                    planet = getPlanetByName(sc.nextLine());
+                    if(planet != null){
+                        System.out.println("Population of the planet "+planet.getName());
+                        if(!planet.getPoblation().isEmpty()){
+                            for (Race pl : planet.getPoblation()){
+                                System.out.println(pl);
+                                System.out.println("***************************************************************************");
+                            }
+                        }else
+                            System.out.println("0 population");
                     }else{
-                        System.out.println("0");
+                        System.out.println("that planet is not correct");
                     }
-                    System.out.println("***************************************************************************");
-                }
-                break;
-            case 0:
-                System.out.println("cancelled");
-                break;
-            default:
-                System.out.println("wrong option");
+                    break;
+                case 2:
+                    messagePresentation("BEINGS PER PLANET");
+                    for (Planet planet_X :planets) {
+                        System.out.println(planet_X);
+                        System.out.println("Poblation: ");
+                        if (!planet_X.getPoblation().isEmpty()){
+                            for (Race poblation :planet_X.getPoblation()){
+                                System.out.println(poblation);
+                            }
+                        }else{
+                            System.out.println("0");
+                        }
+                        System.out.println("***************************************************************************");
+                    }
+                    break;
+                case 0:
+                    System.out.println("cancelled");
+                    break;
+                default:
+                    System.out.println("wrong option");
+            }
+        }else{
+            System.out.println("Not planets yet");
         }
+
     }
 }

@@ -363,7 +363,7 @@ public class ControllerRace {
         ArrayList<Planet> habitablesPlanets = new ArrayList<>();
 
         for (Planet planet : planets) {
-            //First of all, we look at the capacity of the planet
+            //First of all, we look at the capacity of the planet to show
             if(planet.getPoblation().size() != planet.getCapacity()){
                 // Shows the planets an Andorian can live on
                 if ( species instanceof Andorian && !existsHabitant(Vulcanian.class, planet.getPoblation())) {
@@ -437,7 +437,9 @@ public class ControllerRace {
             Race x = getRaceByName(sc.nextLine());
             if(x != null){
                 for (Planet planet : planets){
-
+                    if(planet.getPoblation().contains(x)){
+                        planet.getPoblation().remove(x);
+                    }
                 }
                 species.remove(x);
                 System.out.println("Removed");
@@ -457,7 +459,12 @@ public class ControllerRace {
         if(!species.isEmpty()){
             Race sx = null;
             do {
-                messageElection("What species do you want to modify?");
+                System.out.println("What species do you want to modify?");
+                System.out.println("[1] Ferengian");
+                System.out.println("[2] Human");
+                System.out.println("[3] Klingonian");
+                System.out.println("[4] Vulcanian");
+                System.out.println("[0] Cancel");
                 switch (sc.nextInt()){
                     case 1 :
                         modifyFerengiano(sx);

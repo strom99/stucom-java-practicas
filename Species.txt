@@ -1,3 +1,6 @@
+<<<<<<< HEAD
 martin		Strange		true		2
 maria				6		3
 leo		Advocate		true		2
+=======
+>>>>>>> de26510fc7dc314a20ff626e70799a96c115ca86
