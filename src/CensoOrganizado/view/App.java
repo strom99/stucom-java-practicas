@@ -10,9 +10,15 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
+<<<<<<< HEAD
         planets.add(new Planet("marte", "andromeda", "Frio",true,false,1));
         /*planets.add(new Planet("pluton", "filomena", "Calido",true,true,4));
         planets.add(new Planet("urano", "filomena", "Calido",false,false,90));*/
+=======
+        planets.add(new Planet("marte", "andromeda", "Frio",true,false,5));
+        planets.add(new Planet("pluton", "filomena", "Calido",true,true,5));
+
+>>>>>>> 48e04b05099a575725de37a62dcc94ad25f626cf
     }
 
     public static void main(String[] args) {

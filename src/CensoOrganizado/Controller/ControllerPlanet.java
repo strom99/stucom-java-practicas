@@ -67,9 +67,8 @@ public class ControllerPlanet {
         Scanner sc = new Scanner(System.in);
         String name;
         String galaxy;
+        name = controlSpaceBlank("Enter the name of the planet: ");
 
-        System.out.println("Enter the name of the planet: ");
-        name = sc.nextLine();
         if(checkPlanet(new Planet(name))){
             System.out.println("That name already exists");
         } else {

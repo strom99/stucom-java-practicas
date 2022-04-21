@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 marte		andromeda		Frio		true		false		1		Poblacion [	assa,]
+=======
+marte		andromeda		Frio		true		false		5		Poblacion [0]
+pluton		filomena		Calido		true		true		5		Poblacion [0]
+>>>>>>> 48e04b05099a575725de37a62dcc94ad25f626cf
