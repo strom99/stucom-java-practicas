@@ -333,7 +333,7 @@ public class ControllerRace {
             List<Planet> habitablePlanets = getHabitablePlanets(x);
             if (habitablePlanets.isEmpty()) {
                 System.out.println("0");
-                System.out.println("The being will be eliminated due to lack of planets");
+                System.out.println("The being will be eliminated due to lack of planets,sorry");
                 // remove the being from the array of species if there are no planets
                 species.remove(x);
                 exit = true;
@@ -348,9 +348,13 @@ public class ControllerRace {
                 if (checkPlanet(new Planet(namePlanet))) {
                     // add the being to the population of that planet
                     Planet planet = getPlanetByName(namePlanet);
-                    planet.getPoblation().add(x);
-                    System.out.println("correct census");
-                    exit =true;
+                    if(planet != null){
+                        planet.getPoblation().add(x);
+                        System.out.println("correct census");
+                        exit =true;
+                    }else {
+                        System.out.println("Wrong with name");
+                    }
                 } else {
                     System.out.println("The planet does not exist!");
                 }
