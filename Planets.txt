@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-marte		andromeda		Frio		true		false		5		Poblacion [	leo,]
+marte		andromeda		Frio		true		false		5		Poblacion [0]
 pluton		filomena		Calido		true		true		5		Poblacion [0]
-=======
-urano		andromeda		Warm		true		true		5		Poblacion [0]
->>>>>>> de26510fc7dc314a20ff626e70799a96c115ca86

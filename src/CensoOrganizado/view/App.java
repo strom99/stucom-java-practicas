@@ -10,19 +10,9 @@ import static CensoOrganizado.Controller.ControllerPlanet.*;
 
 public class App {
     public static void registerPlanets(){
-<<<<<<< HEAD
         planets.add(new Planet("marte", "andromeda", "Frio",true,false,5));
         planets.add(new Planet("pluton", "filomena", "Calido",true,true,5));
-        //planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
-        //planets.add(new Planet("neptuno", "filomena", "Calido",false,true,89));
-        //species.add(new Ferengian("luis",3));
-        species.add(new Andorian("martin", "Strange" ,true));
-        species.add(new Klingonian("maria",6));
-=======
-        planets.add(new Planet("marte", "andromeda", "Frio",true,false,3));
-        planets.add(new Planet("pluton", "filomena", "Calido",true,true,4));
-        planets.add(new Planet("urano", "filomena", "Calido",false,false,90));
->>>>>>> de26510fc7dc314a20ff626e70799a96c115ca86
+
     }
 
     public static void main(String[] args) {

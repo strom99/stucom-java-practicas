@@ -40,4 +40,20 @@ public class Methods {
         }while (!yesOrNo.equalsIgnoreCase("yes") && !yesOrNo.equalsIgnoreCase("no"));
         return isAcepted;
     }
+
+    public static String controlSpaceBlank(String letter){
+        Scanner sc = new Scanner(System.in);
+        String giveMe = "";
+        boolean exit = false;
+        while (!exit){
+            System.out.println(letter);
+            giveMe = sc.nextLine();
+            if(!giveMe.equals("") && giveMe.matches("^[A-Za-z]*$")){
+                exit = true;
+            }else{
+                System.out.println("cannot contain blank spaces");
+            }
+        }
+        return giveMe;
+    }
 }

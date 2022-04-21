@@ -410,7 +410,6 @@ public class ControllerRace {
                 x = species.get(i);
                 break;
             }
-
         }
         return x;
     }
@@ -534,14 +533,14 @@ public class ControllerRace {
             do {
                 System.out.println("Enter the name of the Human to modify :");
                 x = (Human) getRaceByName(sc.nextLine());
-                System.out.println("Age: "+x.getAge());
                 if(x != null){
+                    System.out.println("Age: "+x.getAge());
                     x.setAge(readInBetweenMinAndMax("Enter the new age:",0,130));
                     System.out.println("Modified age");
+                    exit = true;
                 }else{
                     System.out.println("There is no being with such a name");
                 }
-                exit = true;
             }while (!exit);
         }else{
             System.out.println("There are no humans..");
